@@ -6,7 +6,7 @@ const router = require('./router');
 const mongoose = require('mongoose');
 const cors = require('cors');
 
-mongoose.connect('mongodb://localhost:auth/auth')
+mongoose.connect('mongodb://localhost:discuss/discuss')
 
 app.use(morgan('combined'));
 app.use(cors())

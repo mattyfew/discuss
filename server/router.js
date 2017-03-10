@@ -6,6 +6,8 @@ const passport = require('passport');
 const requireAuth = passport.authenticate('jwt', { session: false });
 const requireSignin = passport.authenticate('local', { session: false });
 
+const PostModel = require('./models/post.js');
+
 module.exports = function(app) {
 
     app.get('/', requireAuth, function(req,res) {
@@ -16,7 +18,9 @@ module.exports = function(app) {
 
     app.post('/signup', Authentication.signup);
 
-    app.get('/posts', requireAuth, function(req,res){
-        res.json({"wow": "it worked"})
+    app.get('/posts', function(req,res){
+        PostModel.find({}, function(err, result){
+            res.json(result)
+        })
     })
 }

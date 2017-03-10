@@ -5,7 +5,7 @@ import { Link } from 'react-router';
 
 class PostsIndex extends Component {
     componentWillMount() {
-        this.props.fetchPosts()
+        console.log(this.props.fetchPosts())
     }
 
     renderPosts() {
@@ -37,6 +37,7 @@ class PostsIndex extends Component {
 }
 
 function mapStateToProps(state) {
+    console.log("in mapStateToProps", state.posts);
     return { posts: state.posts.all}
 }
 

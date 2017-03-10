@@ -70,11 +70,20 @@ export function fetchMessage() {
 // ****************** FORUM *****************************
 
 export function fetchPosts() {
-    const request = axios.get(`${ROOT_URL}/posts`);
-
-    return {
-        type: type.FETCH_POSTS,
-        payload: request
+    console.log("fetchPosts ran");
+    return function(dispatch) {
+        axios.get(`${ROOT_URL}/posts`, {
+            headers: { authorization: localStorage.getItem('token') }
+        })
+            .then(response => {
+                dispatch({
+                    type: type.FETCH_POSTS,
+                    payload: response.data
+                })
+            })
+            .catch(error => {
+                console.log("there was an error yo", error);
+            })
     }
 }
 

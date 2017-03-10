@@ -1,0 +1,20 @@
+[
+    {
+        "id": 0,
+        "title": "Awesome post 1",
+        "categories": "cool shit on here",
+        "author": "Skrillex"
+    },
+    {
+        "id": 1,
+        "title": "Awesome post 2",
+        "categories": "whatevs",
+        "author": "Mel Gibson"
+    },
+    {
+        "id": 2,
+        "title": "Awesome post 3",
+        "categories": "yoyoooooo",
+        "author": "Ja Rule"
+    }
+];
