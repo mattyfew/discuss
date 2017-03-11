@@ -10,7 +10,6 @@ export default function(state = INITIAL_STATE, action) {
     case FETCH_POSTS:
         return { ...state, all: action.payload };
     case CREATE_POST:
-        console.log("create post reducer");
         return { ...state, all: action.payload };
     default:
         return state;

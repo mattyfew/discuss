@@ -9,12 +9,8 @@ class PostsNew extends Component {
     }
 
     handleSubmit(props) {
-        this.props.createPost(props)
-            .then(() => {
-                // post has been created, navigate the user to the index
-                // We navigate by calling this.context.router.push with the new path to navigate to
-                this.context.router.push('/')
-            })
+        this.props.createPost(props);
+        this.context.router.push('/');
     }
 
     render() {
@@ -80,3 +76,4 @@ export default reduxForm({
     fields: ['title', 'categories', 'content'],
     validate
 }, null, { createPost })(PostsNew);
+// }, { createPost })(PostsNew);
