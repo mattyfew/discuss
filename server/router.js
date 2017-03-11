@@ -27,9 +27,9 @@ module.exports = function(app) {
 
     app.get('/posts/:post_id', function(req,res){
         console.log("we in dis");
-        PostModel.find({id: req.params.post_id}, function(err, result){
+        PostModel.find({_id: req.params.post_id}, function(err, result){
             console.log(result);
-            res.json(result)
+            res.json(result[0])
         })
     })
 }

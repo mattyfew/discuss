@@ -9,11 +9,11 @@ class PostsShow extends Component {
     }
 
     componentWillMount() {
-        this.props.fetchPost(this.props.params.id);
+        this.props.fetchPost(this.props.params.post_id);
     }
 
     onDeleteClick() {
-        this.props.deletePost(this.props.params.id)
+        this.props.deletePost(this.props.params.post_id)
             .then(() => { this.context.router.push('/'); })
     }
 

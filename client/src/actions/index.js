@@ -93,7 +93,7 @@ export function fetchPost(id) {
             })
         })
         .catch(error => {
-            console.log("there was an error in fetchPosts", error);
+            console.log("there was an error in fetchPost", error);
         })
     }
 }

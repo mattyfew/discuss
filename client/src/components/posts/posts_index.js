@@ -6,7 +6,6 @@ import { Link } from 'react-router';
 class PostsIndex extends Component {
     componentWillMount() {
         this.props.fetchPosts()
-        console.log(this.props);
     }
 
     renderPosts() {
