@@ -21,15 +21,28 @@ module.exports = function(app) {
 
     app.get('/posts', function(req,res){
         PostModel.find({}, function(err, result){
-            res.json(result)
-        })
-    })
+            res.json(result);
+        });
+    });
 
     app.get('/posts/:post_id', function(req,res){
-        console.log("we in dis");
         PostModel.find({_id: req.params.post_id}, function(err, result){
             console.log(result);
-            res.json(result[0])
-        })
-    })
+            res.json(result[0]);
+        });
+    });
+
+    app.post('/posts/new',function(req,res){
+
+        console.log(req.body.props);
+        const post = new PostModel({
+            title: req.body.props.title,
+            categories: req.body.props.categories,
+            content: req.body.props.content,
+        });
+
+        post.save(function(err){
+            if (err) console.error(err);
+        });
+    });
 }

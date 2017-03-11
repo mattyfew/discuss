@@ -99,12 +99,28 @@ export function fetchPost(id) {
 }
 
 export function createPost(props) {
-    const request = axios.post(`${ROOT_URL}/posts`, props);
-
-    return {
-        type: type.CREATE_POST,
-        payload: request
+    return function(dispatch) {
+        axios.post(`${ROOT_URL}/posts/new`, {
+            headers: { authorization: localStorage.getItem('token') },
+            props
+        })
+        .then(response => {
+            console.log("got a response!");
+            dispatch({
+                type: type.CREATE_POST,
+                payload: response.data
+            })
+        })
+        .catch(error => {
+            console.log("there was an error in createPost", error);
+        })
     }
+    // const request = axios.post(`${ROOT_URL}/posts`, props);
+    //
+    // return {
+    //     type: type.CREATE_POST,
+    //     payload: request
+    // }
 }
 
 

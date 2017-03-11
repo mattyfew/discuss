@@ -11,7 +11,7 @@ class PostsIndex extends Component {
     renderPosts() {
         return this.props.posts.map((post) => {
             return (
-                <li className="list-group-item" key={post._id}>
+                <li className="list-group-item index-single-post" key={post._id}>
                     <Link to={"/posts/" + post._id}>
                         <span className="pull-xs-right">{post.categories}</span>
                         <strong>{post.title}</strong>
