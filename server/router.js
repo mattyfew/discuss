@@ -18,8 +18,17 @@ module.exports = function(app) {
 
     app.post('/signup', Authentication.signup);
 
+
     app.get('/posts', function(req,res){
         PostModel.find({}, function(err, result){
+            res.json(result)
+        })
+    })
+
+    app.get('/posts/:post_id', function(req,res){
+        console.log("we in dis");
+        PostModel.find({id: req.params.post_id}, function(err, result){
+            console.log(result);
             res.json(result)
         })
     })

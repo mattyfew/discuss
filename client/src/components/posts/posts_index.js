@@ -5,14 +5,15 @@ import { Link } from 'react-router';
 
 class PostsIndex extends Component {
     componentWillMount() {
-        console.log(this.props.fetchPosts())
+        this.props.fetchPosts()
+        console.log(this.props);
     }
 
     renderPosts() {
         return this.props.posts.map((post) => {
             return (
-                <li className="list-group-item" key={post.id}>
-                    <Link to={"posts/" + post.id}>
+                <li className="list-group-item" key={post._id}>
+                    <Link to={"/posts/" + post._id}>
                         <span className="pull-xs-right">{post.categories}</span>
                         <strong>{post.title}</strong>
                     </Link>
@@ -37,7 +38,6 @@ class PostsIndex extends Component {
 }
 
 function mapStateToProps(state) {
-    console.log("in mapStateToProps", state.posts);
     return { posts: state.posts.all}
 }
 

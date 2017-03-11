@@ -10,18 +10,15 @@ export function signinUser({ email, password }) {
     return function(dispatch) {
         axios.post(`${ROOT_URL}/signin`, { email, password })
             .then(response => {
-
                 dispatch({ type: type.AUTH_USER });
                 localStorage.setItem('token', response.data.token);
                 browserHistory.push('/feature');
-
             })
             .catch(() => {
                 dispatch(authError('Bad Login Info'));
             })
     }
 }
-
 
 export function authError(error){
     return {
@@ -30,12 +27,10 @@ export function authError(error){
     };
 }
 
-
 export function signoutUser() {
     localStorage.removeItem('token');
     return { type: type.UNAUTH_USER }
 }
-
 
 export function signupUser({email, password}) {
     return function(dispatch) {
@@ -44,14 +39,12 @@ export function signupUser({email, password}) {
                 dispatch({ type: type.AUTH_USER });
                 localStorage.setItem('token', response.data.token);
                 browserHistory.push('/feature');
-
             })
             .catch(response => {
                 dispatch(authError(response.data.error));
             })
     }
 }
-
 
 export function fetchMessage() {
     return function(dispatch) {
@@ -67,10 +60,11 @@ export function fetchMessage() {
     }
 }
 
+
+
 // ****************** FORUM *****************************
 
 export function fetchPosts() {
-    console.log("fetchPosts ran");
     return function(dispatch) {
         axios.get(`${ROOT_URL}/posts`, {
             headers: { authorization: localStorage.getItem('token') }
@@ -82,8 +76,25 @@ export function fetchPosts() {
                 })
             })
             .catch(error => {
-                console.log("there was an error yo", error);
+                console.log("there was an error in fetchPosts", error);
             })
+    }
+}
+
+export function fetchPost(id) {
+    return function(dispatch) {
+        axios.get(`${ROOT_URL}/posts/${id}`, {
+            headers: { authorization: localStorage.getItem('token') }
+        })
+        .then(response => {
+            dispatch({
+                type: type.FETCH_POST,
+                payload: response.data
+            })
+        })
+        .catch(error => {
+            console.log("there was an error in fetchPosts", error);
+        })
     }
 }
 
@@ -96,14 +107,6 @@ export function createPost(props) {
     }
 }
 
-export function fetchPost(id) {
-    const request = axios.get(`${ROOT_URL}/posts/${id}`);
-
-    return {
-        type: type.FETCH_POST,
-        payload: request
-    }
-}
 
 export function deletePost(id) {
     const request = axios.delete(`${ROOT_URL}/posts/${id}`);

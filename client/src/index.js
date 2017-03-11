@@ -4,6 +4,7 @@ import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
 import { Router, Route, IndexRoute, browserHistory } from 'react-router';
 import reduxThunk from 'redux-thunk';
+import logger from 'redux-logger';
 
 import App from './components/app';
 import Signin from './components/auth/signin';
@@ -19,7 +20,7 @@ import PostsIndex from './components/posts/posts_index';
 import PostsNew from './components/posts/posts_new';
 import PostsShow from './components/posts/posts_show';
 
-const createStoreWithMiddleware = applyMiddleware(reduxThunk)(createStore);
+const createStoreWithMiddleware = applyMiddleware(reduxThunk, logger())(createStore);
 const store = createStoreWithMiddleware(reducers);
 
 const token = localStorage.getItem('token');
@@ -38,8 +39,8 @@ ReactDOM.render(
               <Route path="signup" component={Signup} />
               <Route path="feature" component={RequireAuth(Feature)} />
               <Route path="posts" component={RequireAuth(PostsIndex)}>
-                <Route path="new" component={RequireAuth(PostsNew)} />
-                <Route path="show" component={RequireAuth(PostsShow)} />
+                <Route path="/posts/new" component={RequireAuth(PostsNew)} />
+                <Route path="/posts/:post_id" component={RequireAuth(PostsShow)} />
               </Route>
 
           </Route>
