@@ -1,8 +1,8 @@
 [
     {
-        "id": 0,
-        "title": "Awesome post 1",
-        "categories": "cool shit on here",
+        "title": "React Training - Startup that teaches React...oh and they build React Router too",
+        "link": "https://reacttraining.com/",
+        "categories": "These guys built a router for react, and then they go around teaching about react for mad money. I think that's pretty sweet.",
         "author": "Skrillex"
     },
     {

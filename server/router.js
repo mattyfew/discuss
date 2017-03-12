@@ -18,7 +18,6 @@ module.exports = function(app) {
 
     app.post('/signup', Authentication.signup);
 
-
     app.get('/posts', function(req,res){
         PostModel.find({}, function(err, result){
             res.json(result);
@@ -27,7 +26,7 @@ module.exports = function(app) {
 
     app.get('/posts/:post_id', function(req,res){
         PostModel.find({_id: req.params.post_id}, function(err, result){
-            console.log(result);
+            if (err) console.error(err);
             res.json(result[0]);
         });
     });
@@ -35,6 +34,7 @@ module.exports = function(app) {
     app.post('/posts/new',function(req,res){
 
         console.log(req.body.props);
+
         const post = new PostModel({
             title: req.body.props.title,
             categories: req.body.props.categories,
@@ -45,4 +45,12 @@ module.exports = function(app) {
             if (err) console.error(err);
         });
     });
+
+    app.delete('/posts/:post_id', function(req,res,next){
+        PostModel.findByIdAndRemove({_id: req.params.post_id}, function(err, result){
+            if (err) console.error(err);
+            console.log("successful deletion!");
+            next();
+        })
+    })
 }

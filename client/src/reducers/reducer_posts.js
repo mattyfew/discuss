@@ -1,4 +1,4 @@
-import { FETCH_POSTS, FETCH_POST, CREATE_POST } from '../actions/types';
+import { FETCH_POSTS, FETCH_POST, CREATE_POST, DELETE_POST } from '../actions/types';
 
 const INITIAL_STATE = { all: [], post: null };
 
@@ -10,6 +10,9 @@ export default function(state = INITIAL_STATE, action) {
     case FETCH_POSTS:
         return { ...state, all: action.payload };
     case CREATE_POST:
+        return { ...state, all: action.payload };
+    case DELETE_POST:
+        console.log("DELETE_POST reducer ran");
         return { ...state, all: action.payload };
     default:
         return state;

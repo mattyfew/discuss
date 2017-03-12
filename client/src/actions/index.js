@@ -105,7 +105,6 @@ export function createPost(props) {
             props
         })
         .then(response => {
-            console.log("got a response!");
             dispatch({
                 type: type.CREATE_POST,
                 payload: response.data
@@ -115,20 +114,21 @@ export function createPost(props) {
             console.log("there was an error in createPost", error);
         })
     }
-    // const request = axios.post(`${ROOT_URL}/posts`, props);
-    //
-    // return {
-    //     type: type.CREATE_POST,
-    //     payload: request
-    // }
 }
 
 
 export function deletePost(id) {
-    const request = axios.delete(`${ROOT_URL}/posts/${id}`);
-
-    return {
-        type: type.DELETE_POST,
-        payload: request
+    console.log("deletePost ran", id);
+    return function(dispatch) {
+        axios.delete(`${ROOT_URL}/posts/${id}`)
+        .then(response => {
+            dispatch({
+                type: type.DELETE_POST,
+                payload: response.data
+            })
+        })
+        .catch(error => {
+            console.log("there was an error in deletePost", error);
+        })
     }
 }

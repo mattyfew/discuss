@@ -1,4 +1,14 @@
-.error { color: red}
+.error { color: red; }
+.center { text-align: center; }
+body { background-color: #dedede !important; }
 
-.index-single-post { margin: 15px}
-.index-single-post a { color: black;}
+
+.index-single-post { margin: 15px; }
+.index-single-post a { color: black; }
+
+nav .navbar-right { margin-right: 15px; }
+
+.page-title { font-size: 36px; text-align: center; margin: 30px 0; }
+
+.post-show-title { margin: 30px 0; font-size: 36px}
+article.post { background-color: white; padding: 30px 30px 20px; border-radius: 5px;}

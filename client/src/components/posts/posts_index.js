@@ -9,12 +9,20 @@ class PostsIndex extends Component {
     }
 
     renderPosts() {
+        // need to add author and incremented number
         return this.props.posts.map((post) => {
             return (
                 <li className="list-group-item index-single-post" key={post._id}>
                     <Link to={"/posts/" + post._id}>
-                        <span className="pull-xs-right">{post.categories}</span>
-                        <strong>{post.title}</strong>
+
+                        <div className="row">
+                            <div className="col-sm-4">
+                                <strong>{post.title}</strong>
+                            </div>
+                            <div className="col-sm-4">
+                                <span className="">{post.categories}</span>
+                            </div>
+                        </div>
                     </Link>
                 </li>
             )
@@ -24,10 +32,7 @@ class PostsIndex extends Component {
     render() {
         return (
             <div>
-                <div className="text-xs-right">
-                    <Link to="/posts/new" className="btn btn-primary" >Add a Post</Link>
-                </div>
-                <h3>Posts</h3>
+                <h2 className="page-title">Posts</h2>
                 <ul className="list-group">
                     {this.renderPosts()}
                 </ul>

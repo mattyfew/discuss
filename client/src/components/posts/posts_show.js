@@ -14,7 +14,7 @@ class PostsShow extends Component {
 
     onDeleteClick() {
         this.props.deletePost(this.props.params.post_id)
-            .then(() => { this.context.router.push('/'); })
+        this.context.router.push('/')
     }
 
     render(){
@@ -23,16 +23,16 @@ class PostsShow extends Component {
         if (!post) return (<div>Loading...</div>);
 
         return (
-            <div>
-                <Link to="/">Back to Home</Link>
+            <article className="post">
+                <Link to="/" className="btn btn-primary">Back to Home</Link>
                 <button
-                    className="btn btn-danger pull-xs-right"
+                    className="btn btn-danger pull-right"
                     onClick={this.onDeleteClick.bind(this)}>
                     Delete Post</button>
-                <h3>{post.title}</h3>
+                <h3 className="post-show-title center">{post.title}</h3>
                 <h6>Categories: {post.categories}</h6>
                 <p>{post.content}</p>
-            </div>
+            </article>
         );
     }
 }

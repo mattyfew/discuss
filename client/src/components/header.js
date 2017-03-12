@@ -8,9 +8,6 @@ class Header extends Component{
             return [
                 <li className="nav-item" key={2}>
                     <Link className="nav-link" to="/posts/new">New Post</Link>
-                </li>,
-                <li className="nav-item" key={3}>
-                    <Link className="nav-link" to="/signout">Sign Out</Link>
                 </li>
             ]
         } else {
@@ -27,10 +24,18 @@ class Header extends Component{
 
     render(){
         return(
-            <nav className="navbar navbar-light">
+            <nav className="navbar navbar-default">
                 <Link to="/" className="navbar-brand">Discuss</Link>
                 <ul className="nav navbar-nav">
                     {this.renderLinks()}
+                </ul>
+                <ul className="nav navbar-nav navbar-right">
+                    <li className="nav-item">
+                        <Link className="nav-link" to="#">My Profile</Link>
+                    </li>
+                    <li className="nav-item">
+                        <Link className="nav-link" to="/signout">Sign Out</Link>
+                    </li>
                 </ul>
             </nav>
         )
