@@ -5,6 +5,19 @@ const morgan = require('morgan');
 const router = require('./router');
 const mongoose = require('mongoose');
 const cors = require('cors');
+const session = require('express-session');
+const Store = require('connect-redis')(session);
+
+app.use(session({
+    store: new Store({
+        ttl: 3600,
+        host: 'localhost',
+        port: 6379
+    }),
+    resave: false,
+    saveUninitialized: true,
+    secret: require('./config').secret
+}));
 
 mongoose.connect('mongodb://localhost:discuss/discuss')
 

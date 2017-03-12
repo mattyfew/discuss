@@ -11,8 +11,10 @@
   "dependencies": {
     "bcrypt-nodejs": "0.0.3",
     "body-parser": "^1.17.1",
+    "connect-redis": "^3.2.0",
     "cors": "^2.8.1",
     "express": "^4.15.2",
+    "express-session": "^1.15.1",
     "jwt-simple": "^0.5.1",
     "mongoose": "^4.8.6",
     "mongoose-auto-increment": "^5.0.1",

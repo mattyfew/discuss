@@ -33,16 +33,19 @@ module.exports = function(app) {
 
     app.post('/posts/new',function(req,res){
 
-        console.log(req.body.props);
+        console.log("req.body is ",req.body);
 
         const post = new PostModel({
             title: req.body.props.title,
             categories: req.body.props.categories,
             content: req.body.props.content,
+            author_id: req.body.props.user_id,
+            author_username: req.body.props.username
         });
 
         post.save(function(err){
             if (err) console.error(err);
+            console.log("successful save!");
         });
     });
 

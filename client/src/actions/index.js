@@ -7,6 +7,7 @@ const ROOT_URL = 'http://localhost:3090';
 // ****************** AUTH *****************************
 
 export function signinUser({ email, password }) {
+    var self = this;
     return function(dispatch) {
         axios.post(`${ROOT_URL}/signin`, { email, password })
             .then(response => {
@@ -14,8 +15,8 @@ export function signinUser({ email, password }) {
                 localStorage.setItem('token', response.data.token);
                 browserHistory.push('/feature');
             })
-            .catch(() => {
-                dispatch(authError('Bad Login Info'));
+            .catch((err) => {
+                dispatch(authError('Bad Login Info', err));
             })
     }
 }
@@ -32,15 +33,24 @@ export function signoutUser() {
     return { type: type.UNAUTH_USER }
 }
 
-export function signupUser({email, password}) {
+export function signupUser(formProps) {
+    var self = this;
     return function(dispatch) {
-        axios.post(`${ROOT_URL}/signup`, { email, password })
+        axios.post(`${ROOT_URL}/signup`, formProps)
             .then(response => {
                 dispatch({ type: type.AUTH_USER });
                 localStorage.setItem('token', response.data.token);
-                browserHistory.push('/feature');
+                dispatch({
+                    type: type.SET_USER_IN_STATE,
+                    payload: {
+                        'user_id': response.data.user_id,
+                        'username': response.data.username
+                    }
+                })
+                browserHistory.push('/');
             })
             .catch(response => {
+                console.error(response);
                 dispatch(authError(response.data.error));
             })
     }
@@ -98,7 +108,10 @@ export function fetchPost(id) {
     }
 }
 
-export function createPost(props) {
+export function createPost(formData) {
+
+    var props = { ...formData, username: localStorage.getItem('username'), user_id: localStorage.getItem('user_id') };
+
     return function(dispatch) {
         axios.post(`${ROOT_URL}/posts/new`, {
             headers: { authorization: localStorage.getItem('token') },

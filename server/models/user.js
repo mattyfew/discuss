@@ -6,12 +6,16 @@ const bcrypt = require('bcrypt-nodejs');
 const userSchema = new Schema({
     email: { type: String, unique: true, lowercase: true },
     username: { type: String, unique: true, lowercase: true },
-    firstname: { type: String },
-    lastname: { type: String },
-    imageUrl: { type: String },
+    admin: { type: Boolean, unique: false },
+    firstname: { type: String, unique: false },
+    lastname: { type: String, unique: false },
+    imageUrl: { type: String, unique: false },
     password: { type: String },
     posts: [
         { type: mongoose.Schema.Types.ObjectId, ref: 'Post' }
+    ],
+    comments: [
+        { type: mongoose.Schema.Types.ObjectId, ref: 'Comment' }
     ]
 }, { timestamps: true });
 
