@@ -4,7 +4,7 @@ import * as actions from '../../actions/index';
 
 class Signin extends Component {
     handleFormSubmit({ email, password }){
-        this.props.signinUser({ email, password });
+        this.props.signinUser({ email, password }, this.state);
     }
 
     renderAlert(){
@@ -38,7 +38,11 @@ class Signin extends Component {
 }
 
 function mapStateToProps(state){
-    return { errorMessage: state.auth.error }
+    return {
+        errorMessage: state.auth.error,
+        user_id: state.auth.user_id,
+        username: state.auth.username
+    }
 }
 
 export default reduxForm({

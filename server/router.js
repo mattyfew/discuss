@@ -33,8 +33,6 @@ module.exports = function(app) {
 
     app.post('/posts/new',function(req,res){
 
-        console.log("req.body is ",req.body);
-
         const post = new PostModel({
             title: req.body.props.title,
             categories: req.body.props.categories,

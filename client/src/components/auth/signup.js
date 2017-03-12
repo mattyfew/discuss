@@ -4,7 +4,7 @@ import * as actions from '../../actions';
 
 class Signup extends Component {
     handleSubmit(formProps){
-        this.props.signupUser(formProps)
+        this.props.signupUser(formProps, this.state)
     }
 
     renderAlert() {
@@ -68,12 +68,6 @@ function validate(formProps) {
         errors.passwordConfirm = 'Please enter a password confirmation';
     }
 
-    // for(var i = 0; i < formProps.length; i++) {
-    //     if (!formProps[i]){
-    //         errors[i] = "Please enter a " + formProps[i]
-    //     }
-    // }
-
     if (formProps.password !== formProps.passwordConfirm){
         errors.password = "Passwords must match!";
     }
@@ -82,7 +76,11 @@ function validate(formProps) {
 }
 
 function mapStateToProps(state){
-    return { errorMessage: state.auth.error };
+    return {
+        errorMessage: state.auth.error,
+        user_id: state.auth.user_id,
+        username: state.auth.username
+    }
 }
 
 export default reduxForm({

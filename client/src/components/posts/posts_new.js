@@ -9,7 +9,7 @@ class PostsNew extends Component {
     }
 
     handleSubmit(props) {
-        this.props.createPost(props);
+        this.props.createPost(props, this.state);
         this.context.router.push('/');
     }
 
@@ -71,9 +71,15 @@ function validate(values) {
 // connect: first arg is mapStateToProps, 2nd is mapDispatchToProps
 // reduxForm: 1st is form config, 2nd is mapStateToProps, 3rd is mapDispatchToProps
 
+function mapStateToProps(state) {
+    return {
+        user_id: state.auth.user_id,
+        username: state.auth.username
+     };
+}
+
 export default reduxForm({
     form: 'PostsNew',
     fields: ['title', 'categories', 'content'],
     validate
-}, null, { createPost })(PostsNew);
-// }, { createPost })(PostsNew);
+}, mapStateToProps, { createPost })(PostsNew);

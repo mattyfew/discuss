@@ -6,14 +6,23 @@ const ROOT_URL = 'http://localhost:3090';
 
 // ****************** AUTH *****************************
 
-export function signinUser({ email, password }) {
+export function signinUser({ email, password }, state) {
     var self = this;
     return function(dispatch) {
         axios.post(`${ROOT_URL}/signin`, { email, password })
             .then(response => {
+
                 dispatch({ type: type.AUTH_USER });
                 localStorage.setItem('token', response.data.token);
-                browserHistory.push('/feature');
+
+                dispatch({
+                    type: type.SET_USER_IN_STATE,
+                    payload: {
+                        'user_id': response.data.user_id,
+                        'username': response.data.username
+                    }
+                })
+                browserHistory.push('/');
             })
             .catch((err) => {
                 dispatch(authError('Bad Login Info', err));
@@ -33,13 +42,15 @@ export function signoutUser() {
     return { type: type.UNAUTH_USER }
 }
 
-export function signupUser(formProps) {
+export function signupUser(formProps, state) {
     var self = this;
     return function(dispatch) {
         axios.post(`${ROOT_URL}/signup`, formProps)
             .then(response => {
+
                 dispatch({ type: type.AUTH_USER });
                 localStorage.setItem('token', response.data.token);
+
                 dispatch({
                     type: type.SET_USER_IN_STATE,
                     payload: {
@@ -108,10 +119,7 @@ export function fetchPost(id) {
     }
 }
 
-export function createPost(formData) {
-
-    var props = { ...formData, username: localStorage.getItem('username'), user_id: localStorage.getItem('user_id') };
-
+export function createPost(props, state) {
     return function(dispatch) {
         axios.post(`${ROOT_URL}/posts/new`, {
             headers: { authorization: localStorage.getItem('token') },
