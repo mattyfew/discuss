@@ -31,17 +31,21 @@ class PostsIndex extends Component {
                 <li className="list-group-item index-single-post" key={post._id}>
                     <Link to={"/posts/" + post._id}>
 
-                        <div className="row">
-                            <div className="col-sm-4">
-                                <strong>{post.title}</strong>
+                        <h3 className="posts-post-title">{post.title}</h3>
+                        <div className="row posts-post-bottom-row">
+
+                            <div className="col-sm-4 posts-post-author">
+                                by: <span className="">EveryManHasTheirMolly</span>
                             </div>
                             <div className="col-sm-4">
-                                <span className="posts-categories">{post.categories}</span>
+                                <date className="posts-content">Posted: {this.convertDate(post.createdAt)}</date>
                             </div>
                             <div className="col-sm-4">
-                                <span className="posts-content">{this.convertDate(post.createdAt)}</span>
+                                <date className="posts-content">Posted: {this.convertDate(post.createdAt)}</date>
                             </div>
+
                         </div>
+
                     </Link>
                 </li>
             )

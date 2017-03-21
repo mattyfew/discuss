@@ -10,5 +10,11 @@ nav .navbar-right { margin-right: 15px; }
 
 .page-title { font-size: 36px; text-align: center; margin: 30px 0; }
 
-.post-show-title { margin: 30px 0; font-size: 36px}
+.post-show-title { font-size: 36px}
 article.post { background-color: white; padding: 30px 30px 20px; border-radius: 5px;}
+
+/* POSTS INDEX */
+
+.posts-post-title {}
+/*.posts-post-author  { padding: 10px}*/
+.posts-post-bottom-row { font-size: 12px}
