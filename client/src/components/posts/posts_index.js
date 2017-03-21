@@ -8,6 +8,22 @@ class PostsIndex extends Component {
         this.props.fetchPosts()
     }
 
+    convertDate(isoDate) {
+        let date = new Date(isoDate);
+        let year = date.getFullYear();
+        let month = date.getMonth()+1;
+        let dt = date.getDate();
+
+        if (dt < 10) {
+          dt = '0' + dt;
+        }
+        if (month < 10) {
+          month = '0' + month;
+        }
+
+        return `${year}-${month}-${dt}`
+    }
+
     renderPosts() {
         // need to add author and incremented number
         return this.props.posts.map((post) => {
@@ -20,7 +36,10 @@ class PostsIndex extends Component {
                                 <strong>{post.title}</strong>
                             </div>
                             <div className="col-sm-4">
-                                <span className="">{post.categories}</span>
+                                <span className="posts-categories">{post.categories}</span>
+                            </div>
+                            <div className="col-sm-4">
+                                <span className="posts-content">{this.convertDate(post.createdAt)}</span>
                             </div>
                         </div>
                     </Link>
