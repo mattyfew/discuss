@@ -164,3 +164,23 @@ export function deletePost(id) {
         })
     }
 }
+
+// ****************** USER *****************************
+
+export function editProfile(props) {
+    return function(dispatch) {
+        axios.post(`${ROOT_URL}/profile/edit`, {
+            headers: { authorization: localStorage.getItem('token') },
+            props
+        })
+        .then(response => {
+            dispatch({
+                type: type.EDIT_PROFILE,
+                payload: response.data
+            })
+        })
+        .catch(error => {
+            console.log("there was an error in editProfile", error);
+        })
+    }
+}
