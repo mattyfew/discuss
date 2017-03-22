@@ -41,15 +41,22 @@ class ProfileShow extends Component {
                         </div>
                     </div>
 
-                    <div className="form-group">
-                        <label>Email</label>
-                        <input type="text" className="form-control" {...email} />
+                    <div className="row">
+                        <div className="col-xs-12 col-sm-6 form-group">
+                            <label>Email</label>
+                            <input type="text" className="form-control" {...email} />
+                        </div>
+
+                        <div className="col-xs-12 col-sm-6 form-group">
+                            <label>Image</label>
+                            <input placeholde="enter a URL" type="text" className="form-control" {...imageUrl} />
+                        </div>
                     </div>
 
-                    <div className="form-group">
-                        <label>Image</label>
-                        <img src="https://s-media-cache-ak0.pinimg.com/originals/df/a5/e7/dfa5e74f6fa36341a4e0d8d1856ee48e.jpg" />
-                        <input placeholde="enter a URL" type="text" className="form-control" {...imageUrl} />
+                    <div className="row">
+                        <div className="col-xs-12">
+                            <img className="center-block" src="https://s-media-cache-ak0.pinimg.com/originals/df/a5/e7/dfa5e74f6fa36341a4e0d8d1856ee48e.jpg" />
+                        </div>
                     </div>
 
                     <button type="submit" className="btn btn-primary">Submit</button>
