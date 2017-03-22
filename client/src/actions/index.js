@@ -1,10 +1,40 @@
 import axios from 'axios';
 import { browserHistory } from 'react-router';
 import * as type from './types';
+import cookie from 'react-cookie';
 
 const ROOT_URL = 'http://localhost:3090';
 
 // ****************** AUTH *****************************
+
+export function signupUser(formProps, state) {
+    var self = this;
+    return function(dispatch) {
+        axios.post(`${ROOT_URL}/signup`, formProps)
+            .then(response => {
+
+                dispatch({ type: type.AUTH_USER });
+                localStorage.setItem('token', response.data.token);
+
+                dispatch({
+                    type: type.SET_USER_IN_STATE,
+                    payload: {
+                        'user_id': response.data.user_id,
+                        'username': response.data.username
+                    }
+                })
+
+                cookie.save('user_id', response.data.user_id )
+                cookie.save('username', response.data.username )
+
+                browserHistory.push('/');
+            })
+            .catch(response => {
+                console.error(response);
+                dispatch(authError(response.data.error));
+            })
+    }
+}
 
 export function signinUser({ email, password }, state) {
     var self = this;
@@ -22,6 +52,10 @@ export function signinUser({ email, password }, state) {
                         'username': response.data.username
                     }
                 })
+
+                cookie.save('user_id', response.data.user_id )
+                cookie.save('username', response.data.username )
+
                 browserHistory.push('/');
             })
             .catch((err) => {
@@ -42,31 +76,6 @@ export function signoutUser() {
     return { type: type.UNAUTH_USER }
 }
 
-export function signupUser(formProps, state) {
-    var self = this;
-    return function(dispatch) {
-        axios.post(`${ROOT_URL}/signup`, formProps)
-            .then(response => {
-
-                dispatch({ type: type.AUTH_USER });
-                localStorage.setItem('token', response.data.token);
-
-                dispatch({
-                    type: type.SET_USER_IN_STATE,
-                    payload: {
-                        'user_id': response.data.user_id,
-                        'username': response.data.username
-                    }
-                })
-                browserHistory.push('/');
-            })
-            .catch(response => {
-                console.error(response);
-                dispatch(authError(response.data.error));
-            })
-    }
-}
-
 export function fetchMessage() {
     return function(dispatch) {
         axios.get(ROOT_URL, {
@@ -83,7 +92,9 @@ export function fetchMessage() {
 
 
 
-// ****************** FORUM *****************************
+// ****************** POSTS *****************************
+
+
 
 export function fetchPosts() {
     return function(dispatch) {
@@ -119,7 +130,7 @@ export function fetchPost(id) {
     }
 }
 
-export function createPost(props, state) {
+export function createPost(props) {
     return function(dispatch) {
         axios.post(`${ROOT_URL}/posts/new`, {
             headers: { authorization: localStorage.getItem('token') },

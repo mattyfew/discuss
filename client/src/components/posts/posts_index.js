@@ -35,7 +35,7 @@ class PostsIndex extends Component {
                         <div className="row posts-post-bottom-row">
 
                             <div className="col-sm-4 posts-post-author">
-                                by: <span className="">EveryManHasTheirMolly</span>
+                                by: <span className="">{post.author_username}</span>
                             </div>
                             <div className="col-sm-4">
                                 <date className="posts-content">Posted: {this.convertDate(post.createdAt)}</date>

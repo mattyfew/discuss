@@ -31,6 +31,7 @@ class PostsShow extends Component {
                     Delete Post</button>
                 <h3 className="post-show-title center">{post.title}</h3>
                 <h6>Categories: {post.categories}</h6>
+                <p>by: {post.author_username}</p>
                 <p>{post.content}</p>
             </article>
         );

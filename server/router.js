@@ -37,7 +37,7 @@ module.exports = function(app) {
             title: req.body.props.title,
             categories: req.body.props.categories,
             content: req.body.props.content,
-            author_id: req.body.props.user_id,
+            author_id: req.body.props.userId,
             author_username: req.body.props.username
         });
 

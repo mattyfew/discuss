@@ -2,14 +2,23 @@ import React, { Component, PropTypes } from 'react';
 import { reduxForm } from 'redux-form';
 import { createPost } from '../../actions/index';
 import { Link } from 'react-router';
+import cookie from 'react-cookie';
 
 class PostsNew extends Component {
     static contextTypes = {
         router: PropTypes.object
     }
 
+    componentWillMount() {
+        this.state = {
+            userId: cookie.load('user_id'),
+            username: cookie.load('username')
+        }
+    }
+
     handleSubmit(props) {
-        this.props.createPost(props, this.state);
+        let allProps = Object.assign(props, this.state)
+        this.props.createPost(allProps);
         this.context.router.push('/');
     }
 
@@ -54,7 +63,7 @@ function validate(values) {
     const errors = {};
 
     if (!values.title) {
-        errors.title = "Enter a username";
+        errors.title = "Enter a title";
     }
 
     if (!values.categories) {
@@ -73,8 +82,8 @@ function validate(values) {
 
 function mapStateToProps(state) {
     return {
-        user_id: state.auth.user_id,
-        username: state.auth.username
+        userId: state.userId,
+        username: state.username
      };
 }
 
