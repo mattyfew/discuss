@@ -43,7 +43,6 @@ module.exports = function(app) {
 
         post.save(function(err){
             if (err) console.error(err);
-            console.log("successful save!");
         });
     });
 
@@ -52,6 +51,6 @@ module.exports = function(app) {
             if (err) console.error(err);
             console.log("successful deletion!");
             next();
-        })
-    })
+        });
+    });
 }

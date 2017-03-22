@@ -20,6 +20,8 @@ import PostsIndex from './components/posts/posts_index';
 import PostsNew from './components/posts/posts_new';
 import PostsShow from './components/posts/posts_show';
 
+import ProfileShow from './components/profile/profile_show';
+
 const createStoreWithMiddleware = applyMiddleware(reduxThunk, logger())(createStore);
 const store = createStoreWithMiddleware(reducers);
 
@@ -38,6 +40,7 @@ ReactDOM.render(
               <Route path="signout" component={Signout} />
               <Route path="signup" component={Signup} />
               <Route path="/feature" component={RequireAuth(Feature)} />
+              <Route path="/profile" component={RequireAuth(ProfileShow)} />
               <Route path="/posts">
                 <IndexRoute component={RequireAuth(PostsIndex)} />
                 <Route path="/posts/new" component={RequireAuth(PostsNew)} />
