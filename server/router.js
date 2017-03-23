@@ -6,7 +6,8 @@ const passport = require('passport');
 const requireAuth = passport.authenticate('jwt', { session: false });
 const requireSignin = passport.authenticate('local', { session: false });
 
-const PostModel = require('./models/post.js');
+const PostModel = require('./models/post');
+const UserModel = require('./models/user');
 
 module.exports = function(app) {
 
@@ -51,6 +52,14 @@ module.exports = function(app) {
             if (err) console.error(err);
             console.log("successful deletion!");
             next();
+        });
+    });
+
+    app.get('/profile/:id', function(req,res){
+        UserModel.find({_id: req.params.id}, function(err, result){
+            if (err) console.error(err);
+            console.log("HOLY SHIT IT WORKED@@");
+            res.json(result[0]);
         });
     });
 }

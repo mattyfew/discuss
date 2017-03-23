@@ -184,3 +184,21 @@ export function editProfile(props) {
         })
     }
 }
+
+
+export function fetchUser(id) {
+    return function(dispatch) {
+        axios.get(`${ROOT_URL}/profile/${id}`, {
+            headers: { authorization: localStorage.getItem('token') }
+        })
+        .then(response => {
+            dispatch({
+                type: type.FETCH_USER,
+                payload: response.data
+            })
+        })
+        .catch(error => {
+            console.log("there was an error in fetchUser", error);
+        })
+    }
+}

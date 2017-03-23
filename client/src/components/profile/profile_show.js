@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router';
 import { connect } from 'react-redux';
 import { reduxForm } from 'redux-form';
-import { editProfile } from '../../actions/index';
+import { editProfile, fetchUser } from '../../actions/index';
 import cookie from 'react-cookie';
 
 
@@ -12,14 +12,19 @@ class ProfileShow extends Component {
             userId: cookie.load('user_id'),
             username: cookie.load('username')
         }
+
+        this.props.fetchUser(this.state.userId)
     }
 
     handleSubmit(props) {
-        this.props.editProfile(props);
+        this.props.editProfile(props)
     }
 
     render(){
-        const { fields: {firstname, lastname, imageUrl, email }, handleSubmit } = this.props;
+        const { fields: {firstname, lastname, imageUrl, email }, handleSubmit, user } = this.props
+
+        if (!user) return (<div>Loading...</div>)
+        console.log(user.email);
 
         return (
             <div>
@@ -32,24 +37,24 @@ class ProfileShow extends Component {
                     <div className="row">
                         <div className="col-xs-12 col-sm-6 form-group">
                             <label>First Name</label>
-                            <input type="text" className="form-control" {...firstname} />
+                            <input type="text" className="form-control" {...firstname} placeholder={user.firstname}/>
                         </div>
 
                         <div className="col-xs-12 col-sm-6 form-group">
                             <label>Last Name</label>
-                            <input type="text" className="form-control" {...lastname} />
+                            <input type="text" className="form-control" {...lastname} placeholder={user.lastname} />
                         </div>
                     </div>
 
                     <div className="row">
                         <div className="col-xs-12 col-sm-6 form-group">
                             <label>Email</label>
-                            <input type="text" className="form-control" {...email} />
+                            <input type="text" className="form-control" {...email} placeholder={user.email} />
                         </div>
 
                         <div className="col-xs-12 col-sm-6 form-group">
                             <label>Image</label>
-                            <input placeholde="enter a URL" type="text" className="form-control" {...imageUrl} />
+                            <input placeholde="enter a URL" type="text" className="form-control" {...imageUrl} placeholder={user.imageUrl} />
                         </div>
                     </div>
 
@@ -66,11 +71,15 @@ class ProfileShow extends Component {
             </div>
         )
     }
-
 }
 
+function mapStateToProps(state){
+    return {
+        user: state.auth.user
+    }
+}
 
 export default reduxForm({
     form: 'ProfileShow',
     fields: ['firstname', 'lastname', 'imageUrl', 'email']
-}, null, { editProfile })(ProfileShow);
+}, mapStateToProps, { editProfile, fetchUser })(ProfileShow);

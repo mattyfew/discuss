@@ -11,3 +11,4 @@ export const DELETE_POST = 'DELETE_POST';
 export const SET_USER_IN_STATE = 'SET_USER_IN_STATE';
 
 export const EDIT_PROFILE = 'EDIT_PROFILE';
+export const FETCH_USER = 'FETCH_USER';

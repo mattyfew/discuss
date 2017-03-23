@@ -11,12 +11,13 @@ export default function(state = {}, action){
     case type.FETCH_MESSAGE:
         return { ...state, message: action.payload }
     case type.SET_USER_IN_STATE:
-        console.log("payload", action.payload);
         return {
             ...state,
             user_id: action.payload.user_id,
             username: action.payload.username
         }
+    case type.FETCH_USER:
+        return { ...state, user: action.payload }
     }
 
     return state;
