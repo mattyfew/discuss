@@ -33,7 +33,6 @@ module.exports = function(app) {
     });
 
     app.post('/posts/new',function(req,res){
-
         const post = new PostModel({
             title: req.body.props.title,
             categories: req.body.props.categories,
@@ -50,7 +49,6 @@ module.exports = function(app) {
     app.delete('/posts/:post_id', function(req,res,next){
         PostModel.findByIdAndRemove({_id: req.params.post_id}, function(err, result){
             if (err) console.error(err);
-            console.log("successful deletion!");
             next();
         });
     });
@@ -58,8 +56,17 @@ module.exports = function(app) {
     app.get('/profile/:id', function(req,res){
         UserModel.find({_id: req.params.id}, function(err, result){
             if (err) console.error(err);
-            console.log("HOLY SHIT IT WORKED@@");
             res.json(result[0]);
         });
     });
+
+    app.post('/profile/edit', function(req,res){
+        console.log("req.body is ", req.body.props);
+
+        UserModel.findOneAndUpdate({_id: req.body.props.userId}, req.body.props, {upsert: false}, function(err){
+            if (err) console.log(err);
+            return res.send('successfully save!')
+        })
+
+    })
 }

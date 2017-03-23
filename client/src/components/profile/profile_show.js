@@ -17,14 +17,14 @@ class ProfileShow extends Component {
     }
 
     handleSubmit(props) {
-        this.props.editProfile(props)
+        let allProps = Object.assign(props, this.state)
+        this.props.editProfile(allProps)
     }
 
     render(){
         const { fields: {firstname, lastname, imageUrl, email }, handleSubmit, user } = this.props
 
         if (!user) return (<div>Loading...</div>)
-        console.log(user.email);
 
         return (
             <div>

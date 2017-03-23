@@ -26,7 +26,9 @@ class PostsIndex extends Component {
 
     renderPosts() {
         // need to add author and incremented number
-        return this.props.posts.map((post) => {
+        let postsCopy = this.props.posts
+
+        return [...postsCopy].reverse().map((post) => {
             return (
                 <li className="list-group-item index-single-post" key={post._id}>
                     <Link to={"/posts/" + post._id}>
@@ -43,9 +45,7 @@ class PostsIndex extends Component {
                             <div className="col-sm-4">
                                 <date className="posts-content">Posted: {this.convertDate(post.createdAt)}</date>
                             </div>
-
                         </div>
-
                     </Link>
                 </li>
             )
