@@ -28,12 +28,9 @@ class ProfileShow extends Component {
 
         return (
             <div>
-                <h1>Your Profile</h1>
-                <Link to="/" className="btn btn-primary">Back to Home</Link>
+                <h2 className="page-title">Your Profile</h2>
 
                 <form onSubmit={handleSubmit(this.handleSubmit.bind(this))} >
-                    <h3>Customize your Profile</h3>
-
                     <div className="row">
                         <div className="col-xs-12 col-sm-6 form-group">
                             <label>First Name</label>

@@ -24,15 +24,27 @@ class PostsShow extends Component {
 
         return (
             <article className="post">
-                <Link to="/" className="btn btn-primary">Back to Home</Link>
+                <h2 className="post-show-title page-title">{post.title}</h2>
+                <div className="row">
+                    <div className="col-xs-12 col-sm-4">
+                        <h6>Categories: {post.categories}</h6>
+                    </div>
+                    <div className="col-xs-12 col-sm-4">
+                        <p>by: {post.author_username}</p>
+                    </div>
+                    <div className="col-xs-12 col-sm-4">
+                        <p>Time Posted: ????</p>
+                    </div>
+                </div>
+
+                <div className="post-main-container">
+                    <p className="post-main-content">{post.content}</p>
+                </div>
+
                 <button
                     className="btn btn-danger pull-right"
                     onClick={this.onDeleteClick.bind(this)}>
                     Delete Post</button>
-                <h3 className="post-show-title center">{post.title}</h3>
-                <h6>Categories: {post.categories}</h6>
-                <p>by: {post.author_username}</p>
-                <p>{post.content}</p>
             </article>
         );
     }

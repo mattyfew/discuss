@@ -168,7 +168,6 @@ export function deletePost(id) {
 // ****************** USER *****************************
 
 export function editProfile(props) {
-    console.log("in editProfile", props);
     return function(dispatch) {
         axios.post(`${ROOT_URL}/profile/edit`, {
             headers: { authorization: localStorage.getItem('token') },

@@ -27,7 +27,7 @@ class PostsNew extends Component {
 
         return(
             <form onSubmit={handleSubmit(this.handleSubmit.bind(this))}>
-                <h3>Create a New Post</h3>
+                <h2 className="page-title">Create a New Post</h2>
                 <div className={`form-group ${title.touched && title.invalid ? 'has-danger' : ''}`}>
                     <label>Title</label>
                     <input type="text" className="form-control" {...title} />
