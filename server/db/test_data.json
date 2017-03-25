@@ -18,3 +18,26 @@
         "author": "Ja Rule"
     }
 ];
+
+
+/* COMMENTS */
+{
+    "comments" : [
+        {   "post_id": "58d42d70c963be9e3b4729e5",
+            "author_id": "58d67f57146f76d947d8ce28",
+            "content": "first"
+        },
+        {   "post_id": "58d42d70c963be9e3b4729e5",
+            "author_id": "58d67f57146f76d947d8ce28",
+            "content": "secondddddd damn"
+        },
+        {   "post_id": "58d42d70c963be9e3b4729e5",
+            "author_id": "58d67f57146f76d947d8ce28",
+            "content": "eh i dont even care anymore"
+        },
+        {   "post_id": "52d42d70c963be9e3b4729e5",
+            "author_id": "52d67f57146f76d947d8ce28",
+            "content": "i shouldnt be seeing this, if i am then its pulling all the comments"
+        }
+    ]
+}

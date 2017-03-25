@@ -9,6 +9,6 @@ export const FETCH_POST = 'FETCH_POST';
 export const DELETE_POST = 'DELETE_POST';
 
 export const SET_USER_IN_STATE = 'SET_USER_IN_STATE';
-
 export const EDIT_PROFILE = 'EDIT_PROFILE';
 export const FETCH_USER = 'FETCH_USER';
+export const FETCH_COMMENTS = 'FETCH_COMMENTS';

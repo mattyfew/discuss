@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 import { fetchPost, deletePost } from '../../actions/index';
 import { Link } from 'react-router';
 
+import CommentsList from '../comments/comments_list';
+
 class PostsShow extends Component {
     static contextTypes = {
         router: PropTypes.object
@@ -41,10 +43,13 @@ class PostsShow extends Component {
                     <p className="post-main-content">{post.content}</p>
                 </div>
 
+                <CommentsList postId={post._id} />
+
                 <button
                     className="btn btn-danger pull-right"
                     onClick={this.onDeleteClick.bind(this)}>
-                    Delete Post</button>
+                    Delete Post
+                </button>
             </article>
         );
     }

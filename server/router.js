@@ -8,8 +8,13 @@ const requireSignin = passport.authenticate('local', { session: false });
 
 const PostModel = require('./models/post');
 const UserModel = require('./models/user');
+const CommentModel = require('./models/comment');
+const ObjectId = require('mongoose').Types.ObjectId;
+
 
 module.exports = function(app) {
+
+    // ******************   AUTH   **********************
 
     app.get('/', requireAuth, function(req,res) {
         res.send({ message: 'Super secret code is ABC123'});
@@ -19,14 +24,39 @@ module.exports = function(app) {
 
     app.post('/signup', Authentication.signup);
 
+
+
+    // ******************   PROFILE   **********************
+
+    app.get('/profile/:id', function(req,res){
+        UserModel.find({_id: req.params.id}, function(err, result){
+            if (err) console.error(err);
+            res.json(result[0]);
+        });
+    });
+
+    app.post('/profile/edit', function(req,res){
+        console.log("req.body is ", req.body.props);
+
+        UserModel.findOneAndUpdate({_id: req.body.props.userId}, req.body.props, {upsert: false}, function(err){
+            if (err) console.log(err);
+            return res.send('successfully save!')
+        })
+
+    })
+
+
+
+    // ******************   POSTS   **********************
+
     app.get('/posts', function(req,res){
         PostModel.find({}, function(err, result){
             res.json(result);
         });
     });
 
-    app.get('/posts/:post_id', function(req,res){
-        PostModel.find({_id: req.params.post_id}, function(err, result){
+    app.get('/posts/:postId', function(req,res){
+        PostModel.find({_id: req.params.postId}, function(err, result){
             if (err) console.error(err);
             res.json(result[0]);
         });
@@ -53,20 +83,15 @@ module.exports = function(app) {
         });
     });
 
-    app.get('/profile/:id', function(req,res){
-        UserModel.find({_id: req.params.id}, function(err, result){
+    // ******************   COMMENTS   **********************
+
+    app.get('/post/:postId/comments', function(req,res){
+        CommentModel.find({post_id: req.params.postId }, function(err, result){
             if (err) console.error(err);
-            res.json(result[0]);
+
+            console.log("QUERY FOR COMMENTS!!", result);
+
+            res.json(result);
         });
     });
-
-    app.post('/profile/edit', function(req,res){
-        console.log("req.body is ", req.body.props);
-
-        UserModel.findOneAndUpdate({_id: req.body.props.userId}, req.body.props, {upsert: false}, function(err){
-            if (err) console.log(err);
-            return res.send('successfully save!')
-        })
-
-    })
 }

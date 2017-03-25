@@ -204,3 +204,22 @@ export function fetchUser(id) {
         })
     }
 }
+
+// ******************* COMMENTS **************************
+
+export function fetchComments(postId) {
+    return function(dispatch) {
+        axios.get(`${ROOT_URL}/post/${postId}/comments`, {
+            headers: { authorization: localStorage.getItem('token') }
+        })
+        .then(response => {
+            dispatch({
+                type: type.FETCH_COMMENTS,
+                payload: response.data
+            })
+        })
+        .catch(error => {
+            console.log("there was an error in fetchComments", error);
+        })
+    }
+}

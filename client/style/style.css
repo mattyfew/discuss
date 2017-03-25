@@ -27,3 +27,16 @@ footer { text-align: center; margin: 22px; color: #BA0067 }
 
 .post-main-container { background-color: #F0F3FC }
 .post-main-content { padding: 10px}
+
+/* COMMENTS */
+
+.comments-section {
+    background-color: green;
+    padding: 20px;
+}
+.comment {
+    background: blue;
+    color: white;
+    padding: 20px;
+    margin-bottom: 20px;
+}
