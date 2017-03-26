@@ -18,8 +18,8 @@ class PostsNew extends Component {
 
     handleSubmit(props) {
         let allProps = Object.assign(props, this.state)
-        this.props.createPost(allProps);
-        this.context.router.push('/');
+        this.props.createPost(allProps)
+        this.context.router.push('/')
     }
 
     render() {

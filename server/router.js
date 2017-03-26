@@ -63,7 +63,7 @@ module.exports = function(app) {
     });
 
     app.post('/posts/new',function(req,res){
-        const post = new PostModel({
+        let post = new PostModel({
             title: req.body.props.title,
             categories: req.body.props.categories,
             content: req.body.props.content,
@@ -71,7 +71,7 @@ module.exports = function(app) {
             author_username: req.body.props.username
         });
 
-        post.save(function(err){
+        post.save(function(err, newPost){
             if (err) console.error(err);
         });
     });
@@ -85,10 +85,24 @@ module.exports = function(app) {
 
     // ******************   COMMENTS   **********************
 
-    app.get('/post/:postId/comments', function(req,res){
-        CommentModel.find({post_id: req.params.postId }, function(err, result){
+    app.get('/post/:post_id/comments', function(req,res){
+        CommentModel.find({post_id: req.params.post_id }, function(err, result){
             if (err) console.error(err);
             res.json(result);
         });
     });
+
+    app.post('/post/:post_id/comments/new', function(req,res){
+        let comment = new CommentModel({
+            post_id: req.params.postId,
+            author_id: req.body.props.userId,
+            author_username: req.body.props.username,
+            content: req.body.props.content
+        })
+
+        comment.save(function(err, newComment){
+            if (err) console.error(err);
+            console.log("IT WORKED????", newComment);
+        })
+    })
 }

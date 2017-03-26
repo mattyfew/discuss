@@ -6,7 +6,8 @@ mongoose.set('debug', true);
 
 const commentSchema = new Schema({
     post_id: { type: String },
-    author_id: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
+    author_id: { type: String },
+    author_username: { type: String },
     content: { type: String }
 }, { timestamps: true })
 

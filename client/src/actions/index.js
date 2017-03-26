@@ -223,3 +223,21 @@ export function fetchComments(postId) {
         })
     }
 }
+
+export function createComment(props) {
+    return function(dispatch) {
+        axios.post(`${ROOT_URL}/post/${props.postId}/comments/new`, {
+            headers: { authorization: localStorage.getItem('token') },
+            props
+        })
+        .then(response => {
+            dispatch({
+                type: type.CREATE_COMMENT,
+                payload: response.data
+            })
+        })
+        .catch(error => {
+            console.log("there was an error in createComment", error);
+        })
+    }
+}

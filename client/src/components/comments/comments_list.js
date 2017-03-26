@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchComments } from '../../actions/index';
-import Comment from './comment'
+import Comment from './comment';
+import CommentNew from './comment_new';
 
 class CommentsList extends Component {
     componentDidMount() {
@@ -10,10 +11,10 @@ class CommentsList extends Component {
 
     renderComments() {
         let comments = this.props.comments
-        console.log("what im workin with", comments);
-
         return comments.map((comment) => {
-            return <Comment {...comment} />
+            return (
+                <Comment {...comment} key={comment._id} />
+            )
         })
     }
 
@@ -21,7 +22,8 @@ class CommentsList extends Component {
 
         return (
             <section className="comments-section">
-                <h2>Comments!</h2>
+                <h2 className="comments-section-header">Comments!</h2>
+                <CommentNew />
 
                 {this.renderComments()}
             </section>

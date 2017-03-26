@@ -24,7 +24,7 @@ class Header extends Component{
 
     render(){
         return(
-            <nav className="navbar navbar-default">
+            <nav className="navbar">
                 <Link to="/" className="navbar-brand">Discuss</Link>
                 <ul className="nav navbar-nav">
                     {this.renderLinks()}
