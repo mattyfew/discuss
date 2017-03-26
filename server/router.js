@@ -86,13 +86,8 @@ module.exports = function(app) {
     // ******************   COMMENTS   **********************
 
     app.get('/post/:post_id/comments', function(req,res){
-        // CommentModel.find({post_id: req.params.post_id }, function(err, result){
-        //     if (err) console.error(err);
-        //     res.json(result);
-        // });
         PostModel.findOne({ _id: req.params.post_id}).populate("comments").exec(function(err,result){
             if (err) throw err;
-            console.log("WE GOT SOMETHING!!", result);
             res.json(result)
         })
     });
@@ -103,22 +98,17 @@ module.exports = function(app) {
             author_id: req.body.props.userId,
             author_username: req.body.props.username,
             content: req.body.props.content
-        })
+        });
 
         comment.save(function(err, newComment){
             PostModel.findByIdAndUpdate(req.params.postId,
                 { $push: { "comments": newComment._id } },
-                {safe: true, upsert: true, new: true}
-                // function(err, model) {
-                //     if (err) console.error(err);
-                //     console.log(model);
-                //     res.json(model)
-                // }
-            ).populate("comments").exec(function(err, result){
+                {safe: true, upsert: true, new: true})
+            .populate("comments")
+            .exec(function(err, result){
                 if (err) console.error(err);
-                console.log(result);
                 res.json(result)
-            })
+            });
         });
     });
 

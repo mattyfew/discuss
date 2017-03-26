@@ -1,19 +1,24 @@
 .error { color: red; }
 .center { text-align: center; }
-body { background-color: #D5D5D5 !important; }
+body { background-color: #E7D6B2 !important; }
 
 
 .index-single-post { margin: 15px; }
 .index-single-post a { color: black; }
 
-nav { background-color: #6D7993}
+nav { background-color: #AB3D57}
 nav .navbar-right { margin-right: 15px; }
 nav a { color: white; }
+.nav>li>a:hover {
+    text-decoration: none;
+    background-color: inherit;
+}
 
 .page-title { color: black; font-size: 36px; text-align: center; margin: 30px 0; }
 
 .post-show-title { font-size: 36px}
-article.post { background-color: #9099A2; padding: 30px 30px 20px; border-radius: 5px;}
+article.post, .page { background-color: #559B9E; padding: 30px 30px 20px; border-radius: 5px;}
+.post-new-submit-btn { margin-right: 5px; }
 
 /* POSTS INDEX */
 
@@ -22,25 +27,28 @@ article.post { background-color: #9099A2; padding: 30px 30px 20px; border-radius
 .posts-post-author  {}
 .posts-post-bottom-row { font-size: 12px}
 
-footer { text-align: center; margin: 22px; color: #BA0067 }
+footer { text-align: center; margin: 22px; color: #063E75; font-size: 13px;}
 
 
 /* POST SHOW */
 
 .post-main-container { background-color: #F0F3FC }
+.post-main-container p {padding: 20px 15px; margin: 20px 0 35px; }
 .post-main-content { padding: 10px}
 
 /* COMMENTS */
 
 .comments-section {
-    background-color:#96858F;
+    background-color:#356D8B;
     padding: 20px;
 }
 .comment {
     background: white;
     color: black;
     padding: 2px 10px;
-    margin-bottom: 20px;
+    margin-bottom: 8px;
     border-radius: 3px;
 }
+.comment p { margin-bottom: 5px }
 .comments-section-header { margin-top: 0}
+.comment-new button {margin: 10px 0 50px;}

@@ -2,6 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { fetchPost, deletePost } from '../../actions/index';
 import { Link } from 'react-router';
+import convertDate from '../../utils/convertDate';
 
 import CommentsList from '../comments/comments_list';
 
@@ -21,21 +22,22 @@ class PostsShow extends Component {
 
     render(){
         const { post } = this.props;
+        console.log(post);
 
         if (!post) return (<div>Loading...</div>);
 
         return (
-            <article className="post">
+            <article className="post clearfix">
                 <h2 className="post-show-title page-title">{post.title}</h2>
                 <div className="row">
-                    <div className="col-xs-12 col-sm-4">
-                        <h6>Categories: {post.categories}</h6>
-                    </div>
                     <div className="col-xs-12 col-sm-4">
                         <p>by: {post.author_username}</p>
                     </div>
                     <div className="col-xs-12 col-sm-4">
-                        <p>Time Posted: ????</p>
+                        <h6>Categories: {post.categories}</h6>
+                    </div>
+                    <div className="col-xs-12 col-sm-4">
+                        <p>Posted: {convertDate(post.createdAt)}</p>
                     </div>
                 </div>
 

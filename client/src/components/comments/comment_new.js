@@ -26,8 +26,8 @@ class CommentNew extends Component {
 
         return (
             <form className="comment-new">
-                <textarea type="text" className="comment-textarea" {...content} ></textarea>
-                <button type="button" onClick={this.handleSubmit} className="btn btn-primary">Submit</button>
+                <textarea type="text" className="comment-textarea form-control" rows="3" {...content} ></textarea>
+                <button type="button" onClick={this.handleSubmit} className="btn">Submit</button>
             </form>
         )
     }

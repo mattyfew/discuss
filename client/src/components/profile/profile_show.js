@@ -27,7 +27,7 @@ class ProfileShow extends Component {
         if (!user) return (<div>Loading...</div>)
 
         return (
-            <div>
+            <article className="page">
                 <h2 className="page-title">Your Profile</h2>
 
                 <form onSubmit={handleSubmit(this.handleSubmit.bind(this))} >
@@ -65,7 +65,7 @@ class ProfileShow extends Component {
                     <Link to="/" className="btn btn-danger">Cancel</Link>
                 </form>
 
-            </div>
+            </article>
         )
     }
 }

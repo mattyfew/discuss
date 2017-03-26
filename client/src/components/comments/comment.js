@@ -6,7 +6,6 @@ export default class Comment extends Component {
 
     render() {
         let comment = this.props;
-        console.log(comment);
 
         return(
             <article className="comment">
@@ -18,5 +17,4 @@ export default class Comment extends Component {
             </article>
         )
     }
-
 }
