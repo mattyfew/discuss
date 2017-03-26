@@ -7,8 +7,11 @@ const postSchema = new Schema({
     content: { type: String },
     author_id: { type: String },
     author_username: { type: String },
+    // comments: [{
+    //     comment_id: {type: String }
+    // }]
     comments: [
-        {type: mongoose.Schema.Types.ObjectId, ref: 'Comment'}
+        {type: Schema.Types.ObjectId, ref: 'Comment' }
     ]
 }, { timestamps: true });
 

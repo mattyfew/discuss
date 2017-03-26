@@ -9,7 +9,8 @@ export default function(state = INITIAL_STATE, action) {
     case FETCH_COMMENTS:
         return { ...state, all: action.payload }
     case CREATE_COMMENT:
-        return { ...state, comment: action.payload }
+    console.log(action.payload);
+        return { ...state, all: action.payload}
     case EDIT_COMMENT:
         return { ...state, comment: action.payload }
     case DELETE_COMMENT:

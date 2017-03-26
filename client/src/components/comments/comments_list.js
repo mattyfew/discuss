@@ -10,7 +10,7 @@ class CommentsList extends Component {
     }
 
     renderComments() {
-        let comments = this.props.comments
+        let comments = this.props.comments.comments || this.props.comments
         return comments.map((comment) => {
             return (
                 <Comment {...comment} key={comment._id} />

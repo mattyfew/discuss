@@ -86,13 +86,18 @@ module.exports = function(app) {
     // ******************   COMMENTS   **********************
 
     app.get('/post/:post_id/comments', function(req,res){
-        CommentModel.find({post_id: req.params.post_id }, function(err, result){
-            if (err) console.error(err);
-            res.json(result);
-        });
+        // CommentModel.find({post_id: req.params.post_id }, function(err, result){
+        //     if (err) console.error(err);
+        //     res.json(result);
+        // });
+        PostModel.findOne({ _id: req.params.post_id}).populate("comments").exec(function(err,result){
+            if (err) throw err;
+            console.log("WE GOT SOMETHING!!", result);
+            res.json(result)
+        })
     });
 
-    app.post('/post/:post_id/comments/new', function(req,res){
+    app.post('/post/:postId/comments/new', function(req,res){
         let comment = new CommentModel({
             post_id: req.params.postId,
             author_id: req.body.props.userId,
@@ -101,8 +106,20 @@ module.exports = function(app) {
         })
 
         comment.save(function(err, newComment){
-            if (err) console.error(err);
-            console.log("IT WORKED????", newComment);
-        })
-    })
+            PostModel.findByIdAndUpdate(req.params.postId,
+                { $push: { "comments": newComment._id } },
+                {safe: true, upsert: true, new: true}
+                // function(err, model) {
+                //     if (err) console.error(err);
+                //     console.log(model);
+                //     res.json(model)
+                // }
+            ).populate("comments").exec(function(err, result){
+                if (err) console.error(err);
+                console.log(result);
+                res.json(result)
+            })
+        });
+    });
+
 }
