@@ -1,17 +1,18 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import newId from '../../utils/newid'
+import convertDate from '../../utils/convertDate';
 
 export default class Comment extends Component {
 
     render() {
         let comment = this.props;
+        console.log(comment);
 
         return(
             <article className="comment">
                 <hgroup className="row">
-                    <h5 className="comment-author col-xs-4">by: WILL ADD THIS!</h5>
-                    <h5 className="comment-date col-xs-8">posted at: WILL also ADD THIS!</h5>
+                    <h5 className="comment-author col-xs-4">by: {comment.author_username}</h5>
+                    <h5 className="comment-date col-xs-8">posted: {convertDate(comment.createdAt)}</h5>
                 </hgroup>
                 <p className="comment-content">{comment.content}</p>
             </article>

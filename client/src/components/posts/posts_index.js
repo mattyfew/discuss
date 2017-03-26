@@ -2,26 +2,11 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchPosts } from '../../actions/index';
 import { Link } from 'react-router';
+import convertDate from '../../utils/convertDate';
 
 class PostsIndex extends Component {
     componentWillMount() {
         this.props.fetchPosts()
-    }
-
-    convertDate(isoDate) {
-        let date = new Date(isoDate);
-        let year = date.getFullYear();
-        let month = date.getMonth()+1;
-        let dt = date.getDate();
-
-        if (dt < 10) {
-          dt = '0' + dt;
-        }
-        if (month < 10) {
-          month = '0' + month;
-        }
-
-        return `${year}-${month}-${dt}`
     }
 
     renderPosts() {
@@ -40,10 +25,10 @@ class PostsIndex extends Component {
                                 by: <span className="">{post.author_username}</span>
                             </div>
                             <div className="col-sm-4">
-                                <date className="posts-content">Posted: {this.convertDate(post.createdAt)}</date>
+                                <date className="posts-content">Posted: {convertDate(post.createdAt)}</date>
                             </div>
                             <div className="col-sm-4">
-                                <date className="posts-content">Posted: {this.convertDate(post.createdAt)}</date>
+                                <date className="posts-content">Posted: {convertDate(post.createdAt)}</date>
                             </div>
                         </div>
                     </Link>
