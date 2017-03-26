@@ -13,8 +13,6 @@ export default function(state = INITIAL_STATE, action) {
         return { ...state, all: action.payload };
     case DELETE_POST:
         return { ...state, all: action.payload };
-    case FETCH_COMMENTS:
-        return { ...state, all: action.payload }
     default:
         return state;
     }

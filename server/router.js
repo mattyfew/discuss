@@ -88,9 +88,6 @@ module.exports = function(app) {
     app.get('/post/:postId/comments', function(req,res){
         CommentModel.find({post_id: req.params.postId }, function(err, result){
             if (err) console.error(err);
-
-            console.log("QUERY FOR COMMENTS!!", result);
-
             res.json(result);
         });
     });

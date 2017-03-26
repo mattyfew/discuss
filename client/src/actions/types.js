@@ -11,4 +11,8 @@ export const DELETE_POST = 'DELETE_POST';
 export const SET_USER_IN_STATE = 'SET_USER_IN_STATE';
 export const EDIT_PROFILE = 'EDIT_PROFILE';
 export const FETCH_USER = 'FETCH_USER';
+
 export const FETCH_COMMENTS = 'FETCH_COMMENTS';
+export const CREATE_COMMENT = 'CREATE_COMMENT';
+export const EDIT_COMMENT = 'EDIT_COMMENT';
+export const DELETE_COMMENT = 'DELETE_COMMENT';

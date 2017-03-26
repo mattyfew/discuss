@@ -4,21 +4,36 @@ import { fetchComments } from '../../actions/index';
 import Comment from './comment'
 
 class CommentsList extends Component {
-    componentWillMount() {
+    componentDidMount() {
         this.props.fetchComments(this.props.postId)
     }
 
+    renderComments() {
+        let comments = this.props.comments
+        console.log("what im workin with", comments);
+
+        return comments.map((comment) => {
+            return <Comment {...comment} />
+        })
+    }
+
     render(){
+
         return (
             <section className="comments-section">
                 <h2>Comments!</h2>
 
-                <Comment />
-                <Comment />
-                <Comment />
+                {this.renderComments()}
             </section>
         )
     }
 }
 
-export default connect(null, { fetchComments })(CommentsList);
+function mapStateToProps(state) {
+    return {
+        post: state.posts.post,
+        comments: state.comments.all
+    };
+}
+
+export default connect(mapStateToProps, { fetchComments })(CommentsList);
