@@ -45,7 +45,7 @@ exports.signup = function(req,res,next) {
             username: username,
             firstname: firstname,
             lastname: lastname,
-            imageUrl: imageUrl,
+            imageUrl: imageUrl || 'https://upload.wikimedia.org/wikipedia/en/9/93/Tanooki_Mario.jpg',
             admin: false
         });
 

@@ -10,9 +10,7 @@ class ProfileShow extends Component {
     }
 
     render(){
-        if (!this.props.user){
-            return (<div>Loading...</div>)
-        }
+        if (!this.props.user) return (<div>Loading...</div>)
 
         const { username, imageUrl, firstname, lastname } = this.props.user
 
@@ -21,8 +19,8 @@ class ProfileShow extends Component {
 
                 <h2 className="page-title">User Profile</h2>
                 <div>Username: {username}</div>
-                <div>Name: </div>
-                <div>Image: whatever</div>
+                <div>Name: {firstname} {lastname}</div>
+                <div>Image: <img src={imageUrl} /></div>
 
             </article>
         )

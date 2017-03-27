@@ -18,33 +18,46 @@ class Signup extends Component {
     }
 
     render() {
-        const { handleSubmit, fields: { email, username, password, passwordConfirm }} = this.props;
+        const { handleSubmit, fields: { email, username, firstname, lastname, password, passwordConfirm }} = this.props;
 
         return (
-            <form onSubmit={handleSubmit(this.handleSubmit.bind(this))}>
-                <fieldset className="form-group">
-                    <label>Email:</label>
-                    <input className="form-control" {...email} />
-                    {email.touched && email.error && <div className="error">{email.error}</div>}
-                </fieldset>
-                <fieldset className="form-group">
-                    <label>Username:</label>
-                    <input className="form-control" {...username} />
-                    {username.touched && username.error && <div className="error">{username.error}</div>}
-                </fieldset>
-                <fieldset className="form-group">
-                    <label>Password:</label>
-                    <input className="form-control" {...password} type="password" />
-                    {password.touched && password.error && <div className="error">{password.error}</div>}
-                </fieldset>
-                <fieldset className="form-group">
-                    <label>Confirm Password:</label>
-                    <input className="form-control" {...passwordConfirm} type="password" />
-                    {passwordConfirm.touched && passwordConfirm.error && <div className="error">{passwordConfirm.error}</div>}
-                </fieldset>
-                {this.renderAlert()}
-                <button action="submit" className="btn btn-primary">Sign Up</button>
-            </form>
+            <div className="page">
+                <h2 className="page-title">Sign Up</h2>
+                <form onSubmit={handleSubmit(this.handleSubmit.bind(this))}>
+                    <fieldset className="form-group row">
+                        <label className="col-xs-2 col-form-label">Email:</label>
+                        <div className="col-xs-7"><input className="form-control" {...email} /></div>
+                        {email.touched && email.error && <div className="error">{email.error}</div>}
+                    </fieldset>
+                    <fieldset className="form-group row">
+                        <label className="col-xs-2 col-form-label">Username:</label>
+                        <div className="col-xs-7"><input className="form-control" {...username} /></div>
+                        {username.touched && username.error && <div className="error">{username.error}</div>}
+                    </fieldset>
+                    <fieldset className="form-group row">
+                        <label className="col-xs-2 col-form-label">First Name:</label>
+                        <div className="col-xs-7"><input className="form-control" {...firstname} /></div>
+                        {firstname.touched && firstname.error && <div className="error">{firstname.error}</div>}
+                    </fieldset>
+                    <fieldset className="form-group row">
+                        <label className="col-xs-2 col-form-label">Last Name:</label>
+                        <div className="col-xs-7"><input className="form-control" {...lastname} /></div>
+                        {lastname.touched && lastname.error && <div className="error">{lastname.error}</div>}
+                    </fieldset>
+                    <fieldset className="form-group row">
+                        <label className="col-xs-2 col-form-label">Password:</label>
+                        <div className="col-xs-7"><input className="form-control" {...password} type="password" /></div>
+                        {password.touched && password.error && <div className="error">{password.error}</div>}
+                    </fieldset>
+                    <fieldset className="form-group row">
+                        <label className="col-xs-2 col-form-label">Confirm Password:</label>
+                        <div className="col-xs-7"><input className="form-control" {...passwordConfirm} type="password" /></div>
+                        {passwordConfirm.touched && passwordConfirm.error && <div className="error">{passwordConfirm.error}</div>}
+                    </fieldset>
+                    {this.renderAlert()}
+                    <button action="submit" className="btn btn-primary">Sign Up</button>
+                </form>
+            </div>
         )
     }
 }
@@ -52,25 +65,31 @@ class Signup extends Component {
 function validate(formProps) {
     const errors = {};
 
-    if(!formProps.email){
-        errors.email = 'Please enter an email';
+    for (var key in formProps){
+        if (!formProps[key]){
+            errors[key] = 'Please enter a ' + key
+        }
     }
-
-    if(!formProps.username){
-        errors.username = 'Please enter a username';
-    }
-
-    if(!formProps.password){
-        errors.password = 'Please enter a password';
-    }
-
-    if(!formProps.passwordConfirm){
-        errors.passwordConfirm = 'Please enter a password confirmation';
-    }
-
-    if (formProps.password !== formProps.passwordConfirm){
-        errors.password = "Passwords must match!";
-    }
+    //
+    // if(!formProps.email){
+    //     errors.email = 'Please enter an email';
+    // }
+    //
+    // if(!formProps.username){
+    //     errors.username = 'Please enter a username';
+    // }
+    //
+    // if(!formProps.password){
+    //     errors.password = 'Please enter a password';
+    // }
+    //
+    // if(!formProps.passwordConfirm){
+    //     errors.passwordConfirm = 'Please enter a password confirmation';
+    // }
+    //
+    // if (formProps.password !== formProps.passwordConfirm){
+    //     errors.password = "Passwords must match!";
+    // }
 
     return errors;
 }
@@ -85,6 +104,6 @@ function mapStateToProps(state){
 
 export default reduxForm({
     form: 'signup',
-    fields: ['email', 'username', 'password', 'passwordConfirm'],
+    fields: ['email', 'username', 'firstname', 'lastname', 'password', 'passwordConfirm'],
     validate
 }, mapStateToProps, actions)(Signup);
