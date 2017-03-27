@@ -14,6 +14,8 @@ const ObjectId = require('mongoose').Types.ObjectId;
 
 module.exports = function(app) {
 
+
+
     // ******************   AUTH   **********************
 
     app.get('/', requireAuth, function(req,res) {
@@ -82,6 +84,8 @@ module.exports = function(app) {
             next();
         });
     });
+
+
 
     // ******************   COMMENTS   **********************
 

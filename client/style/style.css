@@ -52,3 +52,6 @@ footer { text-align: center; margin: 22px; color: #063E75; font-size: 13px;}
 .comment p { margin-bottom: 5px }
 .comments-section-header { margin-top: 0}
 .comment-new button {margin: 10px 0 50px;}
+
+/* PROFILE PAGES */
+.user-info img {max-width: 200px;}

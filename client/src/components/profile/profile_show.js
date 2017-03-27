@@ -18,9 +18,17 @@ class ProfileShow extends Component {
             <article className="page">
 
                 <h2 className="page-title">User Profile</h2>
-                <div>Username: {username}</div>
-                <div>Name: {firstname} {lastname}</div>
-                <div>Image: <img src={imageUrl} /></div>
+                <section className="user-info row">
+                    <div className="col-xs-12 col-sm-4">
+                        <img src={imageUrl} />
+                    </div>
+                    <div className="col-xs-12 col-sm-8">
+                        <h3>{username}</h3>
+                        <div>{firstname} {lastname}</div>
+                        <div>Recent Posts:</div>
+                        <div>Recent Comments:</div>
+                    </div>
+                </section>
 
             </article>
         )
