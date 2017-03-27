@@ -188,9 +188,9 @@ export function editProfile(props) {
 }
 
 
-export function fetchUser(id) {
+export function fetchUser(username) {
     return function(dispatch) {
-        axios.get(`${ROOT_URL}/profile/${id}`, {
+        axios.get(`${ROOT_URL}/profile/${username}`, {
             headers: { authorization: localStorage.getItem('token') }
         })
         .then(response => {

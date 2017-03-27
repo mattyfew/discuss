@@ -18,7 +18,7 @@ nav a { color: white; }
 
 .post-show-title { font-size: 36px}
 article.post, .page { background-color: #559B9E; padding: 30px 30px 20px; border-radius: 5px;}
-.post-new-submit-btn { margin-right: 5px; }
+.post-new-submit-btn, .edit-profile-submit-btn { margin-right: 5px; }
 
 /* POSTS INDEX */
 

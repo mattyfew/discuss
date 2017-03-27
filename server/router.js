@@ -28,8 +28,8 @@ module.exports = function(app) {
 
     // ******************   PROFILE   **********************
 
-    app.get('/profile/:id', function(req,res){
-        UserModel.find({_id: req.params.id}, function(err, result){
+    app.get('/profile/:username', function(req,res){
+        UserModel.find({username: req.params.username}, function(err, result){
             if (err) console.error(err);
             res.json(result[0]);
         });
