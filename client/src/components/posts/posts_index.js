@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchPosts } from '../../actions/index';
 import { Link } from 'react-router';
-import convertDate from '../../utils/convertDate';
+import { convertDate, convertTime } from '../../utils';
 
 class PostsIndex extends Component {
     componentWillMount() {
@@ -25,10 +25,10 @@ class PostsIndex extends Component {
                                 by: <span className="">{post.author_username}</span>
                             </div>
                             <div className="col-sm-4">
-                                <date className="posts-content">Posted: {convertDate(post.createdAt)}</date>
+                                <date className="posts-content">Posted: {convertDate(post.createdAt)} at {convertTime(post.createdAt)}</date>
                             </div>
                             <div className="col-sm-4">
-                                <date className="posts-content">Posted: {convertDate(post.createdAt)}</date>
+                                <date className="posts-content">Posted: {convertDate(post.createdAt)} at {convertTime(post.createdAt)}</date>
                             </div>
                         </div>
                     </Link>

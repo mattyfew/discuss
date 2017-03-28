@@ -2,8 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { fetchPost, deletePost } from '../../actions/index';
 import { Link } from 'react-router';
-import convertDate from '../../utils/convertDate';
-import convertTime from '../../utils/convertTime';
+import { convertDate, convertTime } from '../../utils';
 
 import CommentsList from '../comments/comments_list';
 

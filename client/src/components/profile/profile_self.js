@@ -13,7 +13,6 @@ class ProfileSelf extends Component {
             username: cookie.load('username')
         }
 
-        // this.props.fetchUser(this.state.userId)
         this.props.fetchUser(this.state.username)
     }
 
@@ -25,7 +24,9 @@ class ProfileSelf extends Component {
     render(){
         const { fields: {firstname, lastname, imageUrl, email }, handleSubmit, user } = this.props
 
+
         if (!user) return (<div>Loading...</div>)
+        console.log(user.firstname);
 
         return (
             <article className="page">
@@ -58,7 +59,7 @@ class ProfileSelf extends Component {
 
                     <div className="row">
                         <div className="col-xs-12">
-                            <img className="center-block" src="https://s-media-cache-ak0.pinimg.com/originals/df/a5/e7/dfa5e74f6fa36341a4e0d8d1856ee48e.jpg" />
+                            <img className="profile-self-img center-block" src={user.imageUrl} />
                         </div>
                     </div>
 
