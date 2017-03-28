@@ -55,3 +55,4 @@ footer { text-align: center; margin: 22px; color: #063E75; font-size: 13px;}
 
 /* PROFILE PAGES */
 .user-info img {max-width: 200px;}
+.profile-self-img {max-width: 250px}

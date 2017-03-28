@@ -28,6 +28,7 @@ module.exports = function(app) {
 
 
 
+
     // ******************   PROFILE   **********************
 
     app.get('/profile/:username', function(req,res){
@@ -38,14 +39,13 @@ module.exports = function(app) {
     });
 
     app.post('/profile/edit', function(req,res){
-        console.log("req.body is ", req.body.props);
-
-        UserModel.findOneAndUpdate({_id: req.body.props.userId}, req.body.props, {upsert: false}, function(err){
+        UserModel.findOneAndUpdate({_id: req.body.props.userId}, req.body.props, {upsert: false, new: true}, function(err, user){
             if (err) console.log(err);
-            return res.send('successfully save!')
+            console.log("callback",user);
+            return res.send(user)
         })
-
     })
+
 
 
 
