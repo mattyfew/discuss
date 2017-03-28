@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { fetchPost, deletePost } from '../../actions/index';
 import { Link } from 'react-router';
 import convertDate from '../../utils/convertDate';
+import convertTime from '../../utils/convertTime';
 
 import CommentsList from '../comments/comments_list';
 
@@ -37,7 +38,7 @@ class PostsShow extends Component {
                         <h6>Categories: {post.categories}</h6>
                     </div>
                     <div className="col-xs-12 col-sm-4">
-                        <p>Posted: {convertDate(post.createdAt)}</p>
+                        <p>Posted: {convertDate(post.createdAt)} at {convertTime(post.createdAt)}</p>
                     </div>
                 </div>
 
