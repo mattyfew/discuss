@@ -12,6 +12,9 @@ class PostsIndex extends Component {
     renderPosts() {
         // need to add author and incremented number
         let postsCopy = this.props.posts
+        postsCopy.sort(function(a,b){
+            return new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime()
+        })
 
         return [...postsCopy].reverse().map((post) => {
             return (

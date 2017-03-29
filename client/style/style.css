@@ -27,7 +27,7 @@ article.post, .page { background-color: #559B9E; padding: 30px 30px 20px; border
 .posts-post-author  {}
 .posts-post-bottom-row { font-size: 12px}
 
-footer { text-align: center; margin: 22px; color: #063E75; font-size: 13px;}
+#main-footer { text-align: center; margin: 22px; color: #063E75; font-size: 13px;}
 
 
 /* POST SHOW */
@@ -54,5 +54,15 @@ footer { text-align: center; margin: 22px; color: #063E75; font-size: 13px;}
 .comment-new button {margin: 10px 0 50px;}
 
 /* PROFILE PAGES */
-.user-info img {max-width: 200px;}
-.profile-self-img {max-width: 250px}
+
+.user-info img { max-width: 200px; }
+.profile-self-img { max-width: 250px; }
+.comment h5 { font-weight: 400; font-size: 13px; }
+.comment-footer { font-size: 13px; color: purple}
+
+
+
+
+
+
+/**/
