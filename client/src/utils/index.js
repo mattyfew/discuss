@@ -24,9 +24,6 @@ export function convertTime(isoDate){
 
 
 export function timeSince(date) {
-    console.log(new Date(date));
-    console.log("second ", date );
-
     var seconds = Math.floor((new Date() - new Date(date)) / 1000);
 
     var interval = Math.floor(seconds / 31536000);

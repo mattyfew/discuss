@@ -52,12 +52,17 @@ article.post, .page { background-color: #559B9E; padding: 30px 30px 20px; border
 .comment p { margin-bottom: 5px }
 .comments-section-header { margin-top: 0}
 .comment-new button {margin: 10px 0 50px;}
+.comment-new textarea { font-size: 12px}
+
+button.show-commentnew { color: black; font-size: 11px; background-color: lightgrey }
+.comment-container .comment-new button { font-size: 10px; }
+.comment-container .comment-new { margin-top: -7px; }
 
 /* PROFILE PAGES */
 
 .user-info img { max-width: 200px; }
 .profile-self-img { max-width: 250px; }
-.comment h5 { font-weight: 400; font-size: 13px; }
+.comment h5 { font-weight: 400; font-size: 12px; margin: 6px auto; }
 .comment-footer { font-size: 13px; color: purple}
 
 

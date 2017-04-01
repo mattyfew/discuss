@@ -26,7 +26,10 @@ class CommentNew extends Component {
 
         return (
             <form className="comment-new">
-                <textarea type="text" className="comment-textarea form-control" rows="3" {...content} ></textarea>
+                <textarea type="text" className="comment-textarea form-control"
+                    rows={this.props.rows || 3}
+                    {...content}
+                    placeholder={this.props.placeholder} ></textarea>
                 <button type="button" onClick={this.handleSubmit} className="btn">Submit</button>
             </form>
         )
