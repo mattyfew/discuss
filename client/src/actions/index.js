@@ -131,6 +131,7 @@ export function fetchPost(id) {
 }
 
 export function createPost(props) {
+    console.log("createPost props", props);
     return function(dispatch) {
         axios.post(`${ROOT_URL}/posts/new`, {
             headers: { authorization: localStorage.getItem('token') },
@@ -231,6 +232,7 @@ export function createComment(props) {
             props
         })
         .then(response => {
+            console.log("createComment response", response.data);
             dispatch({
                 type: type.CREATE_COMMENT,
                 payload: response.data

@@ -57,6 +57,7 @@ article.post, .page { background-color: #559B9E; padding: 30px 30px 20px; border
 button.show-commentnew { color: black; font-size: 11px; background-color: lightgrey }
 .comment-container .comment-new button { font-size: 10px; }
 .comment-container .comment-new { margin-top: -7px; }
+.child, .child .comment-container .comment { background-color: purple; }
 
 /* PROFILE PAGES */
 

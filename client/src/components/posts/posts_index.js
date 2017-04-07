@@ -10,11 +10,11 @@ class PostsIndex extends Component {
     }
 
     renderPosts() {
-        // need to add author and incremented number
         let postsCopy = this.props.posts
         postsCopy.sort(function(a,b){
             return new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime()
         })
+        console.log(postsCopy);
 
         return [...postsCopy].reverse().map((post) => {
             return (
@@ -22,9 +22,9 @@ class PostsIndex extends Component {
 
                         <h3 className="posts-post-title"><Link to={"/posts/" + post._id}>{post.title}</Link></h3>
                         <div className="row posts-post-bottom-row">
-
+                            
                             <div className="col-sm-4 posts-post-author">
-                                by: <span className=""><Link to={"/users/" + post.author_username}>{post.author_username}</Link></span>
+                                by: <span className=""><Link to={"/users/" + post.author.username}>{post.author.username}</Link></span>
                             </div>
                             <div className="col-sm-4">
                                 <date className="posts-content">posted: {convertDate(post.createdAt)} at {convertTime(post.createdAt)}</date>

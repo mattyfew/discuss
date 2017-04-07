@@ -30,7 +30,7 @@ class PostsShow extends Component {
                 <h2 className="post-show-title page-title">{post.title}</h2>
                 <div className="row">
                     <div className="col-xs-12 col-sm-4">
-                        <p>by: <Link to={"/users/" + post.author_username} >{post.author_username}</Link></p>
+                        <p>by: <Link to={"/users/" + post.author.username} >{post.author.username}</Link></p>
                     </div>
                     <div className="col-xs-12 col-sm-4">
                         <h6>Categories: {post.categories}</h6>

@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import { createStore, applyMiddleware } from 'redux';
+import { createStore, applyMiddleware, compose } from 'redux';
 import { Router, Route, IndexRoute, browserHistory } from 'react-router';
 import reduxThunk from 'redux-thunk';
 import logger from 'redux-logger';
@@ -21,9 +21,13 @@ import PostsShow from './components/posts/posts_show';
 import ProfileShow from './components/profile/profile_show';
 import ProfileSelf from './components/profile/profile_self';
 
+const enhancers = compose(
+    window.devToolsExtension ? window.devToolsExtension() : f => f
+)
 
-const createStoreWithMiddleware = applyMiddleware(reduxThunk, logger())(createStore);
-const store = createStoreWithMiddleware(reducers);
+// const createStoreWithMiddleware = applyMiddleware(reduxThunk, logger())(createStore);
+const createStoreWithMiddleware = applyMiddleware(reduxThunk)(createStore);
+const store = createStoreWithMiddleware(reducers, enhancers);
 
 const token = localStorage.getItem('token');
 
