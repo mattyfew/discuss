@@ -6,14 +6,16 @@ import cookie from 'react-cookie';
 class CommentNew extends Component {
     constructor(){
         super()
-        this.state = {value: ''}
+        this.state = {inputValue: ''}
 
         this.handleSubmit = this.handleSubmit.bind(this)
-        this.handleChange = this.handleChange.bind(this)
+        // this.handleChange = this.handleChange.bind(this)
     }
 
-    handleChange(event) {
-        this.setState({value: event.target.value});
+    handleChange (propertyName, event) {
+        let inputValue = this.state.inputValue;
+        // inputValue[propertyName] = event.target.value;
+        this.setState({inputValue: inputValue});
     }
 
     componentWillMount() {
@@ -41,8 +43,9 @@ class CommentNew extends Component {
             <form className="comment-new">
                 <textarea type="text" className="comment-textarea form-control"
                     rows={this.props.rows || 3}
+                    value={this.state.inputValue}
                     {...content}
-                    onchange={this.handleChange} ></textarea>
+                    onChange={this.handleChange.bind(this, 'inputValue')} ></textarea>
                 <button type="button" onClick={this.handleSubmit} className="btn">Submit</button>
             </form>
         )

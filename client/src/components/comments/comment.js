@@ -14,22 +14,8 @@ class Comment extends Component {
 
     render() {
         const comment = this.props;
-        let nestedComments = []
-        console.log("outside of map", comment);
-
-        if(comment.children != []){
-            nestedComments = (comment.children || []).map(comment => {
-                console.log("child", comment);
-                return (
-                    <div className="child">
-                        <Comment {...comment} key={comment._id} />
-                    </div>
-                )
-            });
-
-        } else {
-            return <div>nothing</div>
-        }
+        console.log("in comment", comment);
+        !comment.children.length ? console.log("no kids :(") : console.log("we got kids!", comment.children);
 
         return(
             <div className="comment-container">
@@ -45,7 +31,6 @@ class Comment extends Component {
                                 this.setState({ showCommentForm: true })
                             } }>Reply</button>
                     </footer>
-                    { nestedComments }
                 </article>
 
                 { this.state.showCommentForm &&
