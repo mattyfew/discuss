@@ -5,17 +5,15 @@ import cookie from 'react-cookie';
 
 class CommentNew extends Component {
     constructor(){
-        super()
+        super();
         this.state = {inputValue: ''}
 
         this.handleSubmit = this.handleSubmit.bind(this)
         // this.handleChange = this.handleChange.bind(this)
     }
 
-    handleChange (propertyName, event) {
-        let inputValue = this.state.inputValue;
-        // inputValue[propertyName] = event.target.value;
-        this.setState({inputValue: inputValue});
+    handleChange () {
+        this.setState({inputValue: this.inputValue.refs.input.value});
     }
 
     componentWillMount() {
@@ -26,7 +24,11 @@ class CommentNew extends Component {
     }
 
     handleSubmit(){
+        console.log(this.props.values)
+
+
         let allProps = Object.assign(
+            {},
             this.props.values,
             this.state, {
                 postId: this.props.postId,
@@ -41,18 +43,29 @@ class CommentNew extends Component {
 
         return (
             <form className="comment-new">
-                <textarea type="text" className="comment-textarea form-control"
-                    rows={this.props.rows || 3}
-                    value={this.state.inputValue}
-                    {...content}
-                    onChange={this.handleChange.bind(this, 'inputValue')} ></textarea>
+                <TextArea
+                    ref={ component => this.inputValue = component }
+                    handleChange={this.handleChange.bind(this)} />
+                <div>Checker: {this.state.inputValue}</div>
                 <button type="button" onClick={this.handleSubmit} className="btn">Submit</button>
             </form>
         )
     }
 }
 
+class TextArea extends Component {
+    render(){
+        return (
+            <textarea type="text" className="comment-textarea form-control"
+                onChange={this.props.handleChange}
+                ref="input"
+                rows={this.props.rows || 3} />
+        )
+    }
+}
+
 function mapStateToProps(state) {
+    console.log(state);
     return {
         userId: state.userId,
         username: state.username,

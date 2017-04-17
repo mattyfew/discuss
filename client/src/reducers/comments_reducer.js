@@ -2,7 +2,7 @@ import { FETCH_COMMENTS, CREATE_COMMENT, EDIT_COMMENT, DELETE_COMMENT } from '..
 
 const INITIAL_STATE = { all: [] };
 
-export default function(state = INITIAL_STATE, action) {
+export default (state = INITIAL_STATE, action) => {
 
     switch(action.type) {
 

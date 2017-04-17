@@ -2,7 +2,7 @@ import { FETCH_POSTS, FETCH_POST, CREATE_POST, DELETE_POST, FETCH_COMMENTS } fro
 
 const INITIAL_STATE = { all: [], post: null };
 
-export default function(state = INITIAL_STATE, action) {
+export default (state = INITIAL_STATE, action) => {
 
     switch(action.type) {
     case FETCH_POST:

@@ -1,58 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Provider } from 'react-redux';
-import { createStore, applyMiddleware, compose } from 'redux';
-import { Router, Route, IndexRoute, browserHistory } from 'react-router';
-import reduxThunk from 'redux-thunk';
-import logger from 'redux-logger';
+import configureStore from './configureStore';
+import Root from './components/root';
 
-import App from './components/app';
-import Signin from './components/auth/signin';
-import Signout from './components/auth/signout';
-import Signup from './components/auth/signup';
-import RequireAuth from './components/auth/require_auth';
-import reducers from './reducers';
-import { AUTH_USER } from './actions/types';
-
-import PostsIndex from './components/posts/posts_index';
-import PostsNew from './components/posts/posts_new';
-import PostsShow from './components/posts/posts_show';
-
-import ProfileShow from './components/profile/profile_show';
-import ProfileSelf from './components/profile/profile_self';
-
-const enhancers = compose(
-    window.devToolsExtension ? window.devToolsExtension() : f => f
-)
-
-// const createStoreWithMiddleware = applyMiddleware(reduxThunk, logger())(createStore);
-const createStoreWithMiddleware = applyMiddleware(reduxThunk)(createStore);
-const store = createStoreWithMiddleware(reducers, enhancers);
-
-const token = localStorage.getItem('token');
-
-if (token) {
-    store.dispatch({ type: AUTH_USER })
-}
+const store = configureStore();
 
 ReactDOM.render(
-  <Provider store={store}>
-      <Router history={browserHistory}>
-          <Route path="/" component={App}>
-              <IndexRoute component={PostsIndex} />
-              <Route path="signin" component={Signin} />
-              <Route path="signout" component={Signout} />
-              <Route path="signup" component={Signup} />
-              <Route path="/profile" component={RequireAuth(ProfileSelf)} />
-              <Route path="/users/:username" component={RequireAuth(ProfileShow)} />
-              <Route path="/posts">
-                <IndexRoute component={RequireAuth(PostsIndex)} />
-                <Route path="/posts/new" component={RequireAuth(PostsNew)} />
-                <Route path="/posts/:post_id" component={RequireAuth(PostsShow)} />
-              </Route>
-
-          </Route>
-      </Router>
-  </Provider>
-  , document.querySelector('.container')
+    <Root store={store} />,
+    document.querySelector('.container')
 );
