@@ -58,10 +58,14 @@ module.exports = function(app) {
     });
 
     app.get('/posts/:postId', function(req,res){
-        PostModel.find({_id: req.params.postId}, function(err, result){
-            if (err) console.error(err);
-            res.json(result[0]);
-        });
+
+        PostModel.findOne({_id: req.params.postId})
+            .populate("comments")
+            .exec(function(err, result){
+                console.log("get Post", result);
+                if (err) console.error(err);
+                res.json(result);
+            });
     });
 
     app.post('/posts/new',function(req,res){
@@ -103,18 +107,18 @@ module.exports = function(app) {
 
         let comment = new CommentModel({
             post_id: req.params.postId,
-            content: req.body.props.content,
+            content: req.body.props.inputValue,
             parent_id: req.body.props.parentId,
             author: {
                 id: req.body.props.userId,
                 username: req.body.props.username
             }
         });
+        // console.log("the new comment to BE", comment);
 
         comment.save(function(err, newComment){
 
             // if(newComment.parent_id){
-            //
             //     CommentModel.findByIdAndUpdate(newComment.parent_id, {
             //         $push: { "children" : newComment._id }
             //     }, { upsert: true, new: true })
@@ -124,7 +128,6 @@ module.exports = function(app) {
             //         console.log(result, "this is in the commentModel");
             //         res.json(result)
             //     });
-            //
             // } else {
                 console.log("THE NEW COMMENTTTT", newComment);
 
@@ -136,7 +139,7 @@ module.exports = function(app) {
                 .populate("children")
                 .exec(function(err, result){
                     if (err) console.error(err);
-                    console.log(result, "this is in the PostModel");
+                    console.log("this is in the PostModel", result);
                     res.json(result)
                 });
 

@@ -7,18 +7,25 @@ import { convertDate, convertTime } from '../../utils';
 import CommentsList from '../comments/comments_list';
 
 class PostsShow extends Component {
+    constructor() {
+        super ();
+        this.state = { comments: [], post: {} }
+    }
+
     static contextTypes = {
         router: PropTypes.object
     }
 
     componentWillMount() {
-        this.props.fetchPost(this.props.params.post_id);
+        this.props.fetchPost(this.props.params.post_id)
     }
+
 
     onDeleteClick() {
         this.props.deletePost(this.props.params.post_id)
         this.context.router.push('/')
     }
+
 
     render(){
         const { post } = this.props;
@@ -44,7 +51,7 @@ class PostsShow extends Component {
                     <p className="post-main-content">{post.content}</p>
                 </div>
 
-                <CommentsList postId={post._id} />
+                <CommentsList postId={post._id} comments={post.comments} />
 
                 <button
                     className="btn btn-danger pull-right"
@@ -57,7 +64,9 @@ class PostsShow extends Component {
 }
 
 function mapStateToProps(state) {
-    return { post: state.posts.post };
+    return {
+        post: state.posts.post
+    };
 }
 
 export default connect(mapStateToProps, { fetchPost, deletePost })(PostsShow);

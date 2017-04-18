@@ -9,7 +9,7 @@ class CommentNew extends Component {
         this.state = {inputValue: ''}
 
         this.handleSubmit = this.handleSubmit.bind(this)
-        // this.handleChange = this.handleChange.bind(this)
+        this.handleChange = this.handleChange.bind(this)
     }
 
     handleChange () {
@@ -24,13 +24,7 @@ class CommentNew extends Component {
     }
 
     handleSubmit(){
-        console.log(this.props.values)
-
-
-        let allProps = Object.assign(
-            {},
-            this.props.values,
-            this.state, {
+        const allProps = Object.assign( {}, this.state, {
                 postId: this.props.postId,
                 parentId: this.props.parentId
             }
@@ -45,7 +39,7 @@ class CommentNew extends Component {
             <form className="comment-new">
                 <TextArea
                     ref={ component => this.inputValue = component }
-                    handleChange={this.handleChange.bind(this)} />
+                    handleChange={this.handleChange} />
                 <div>Checker: {this.state.inputValue}</div>
                 <button type="button" onClick={this.handleSubmit} className="btn">Submit</button>
             </form>
@@ -65,7 +59,6 @@ class TextArea extends Component {
 }
 
 function mapStateToProps(state) {
-    console.log(state);
     return {
         userId: state.userId,
         username: state.username,

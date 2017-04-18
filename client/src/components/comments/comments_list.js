@@ -5,16 +5,8 @@ import Comment from './comment';
 import CommentNew from './comment_new';
 
 class CommentsList extends Component {
-    componentDidMount() {
-        if (this.props.comment && this.props.comment.children){
-            return console.log("testtest?");
-        } else {
-            this.props.fetchComments(this.props.postId)
-        }
-    }
 
-    renderComments() {
-        let comments = this.props.comments.comments || this.props.comments
+    renderComments(comments) {
         return comments.map((comment) => {
             return (
                 <Comment {...comment} key={comment._id} />
@@ -23,23 +15,17 @@ class CommentsList extends Component {
     }
 
     render(){
+        const { comments } = this.props
 
         return (
             <section className="comments-section">
                 <h2 className="comments-section-header">Comments!</h2>
                 <CommentNew />
 
-                {this.renderComments()}
+                { this.renderComments(comments) }
             </section>
         )
     }
 }
 
-function mapStateToProps(state) {
-    return {
-        post: state.posts.post,
-        comments: state.comments.all
-    };
-}
-
-export default connect(mapStateToProps, { fetchComments })(CommentsList);
+export default CommentsList;

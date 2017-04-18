@@ -7,15 +7,13 @@ import CommentNew from './comment_new';
 import { fetchComments } from '../../actions/index';
 
 class Comment extends Component {
-    constructor (props){
-        super(props)
+    constructor (){
+        super()
         this.state = { showCommentForm: false }
     }
 
     render() {
         const comment = this.props;
-        console.log("in comment", comment);
-        !comment.children.length ? console.log("no kids :(") : console.log("we got kids!", comment.children);
 
         return(
             <div className="comment-container">
@@ -45,11 +43,4 @@ class Comment extends Component {
     }
 }
 
-function mapStateToProps(state) {
-    return {
-        // post: state.posts.post,
-        comments: state.comments.all
-    };
-}
-
-export default connect(mapStateToProps, { fetchComments })(Comment);
+export default Comment;
