@@ -1,8 +1,8 @@
 import React from 'react';
 import { Provider } from 'react-redux';
-import { Router, Route, IndexRoute, browserHistory } from 'react-router';
+// import { Router, Route, IndexRoute, browserHistory } from 'react-router';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
-import App from './app';
 import Signin from './auth/signin';
 import Signout from './auth/signout';
 import Signup from './auth/signup';
@@ -15,23 +15,27 @@ import PostsShow from './posts/posts_show';
 import ProfileShow from './profile/profile_show';
 import ProfileSelf from './profile/profile_self';
 
+import Header from './header';
+import Footer from './footer';
+
 const Root = ({store}) => (
     <Provider store={store}>
-        <Router history={browserHistory}>
-            <Route path="/" component={App}>
-                <IndexRoute component={PostsIndex} />
-                <Route path="signin" component={Signin} />
-                <Route path="signout" component={Signout} />
-                <Route path="signup" component={Signup} />
-                <Route path="profile" component={RequireAuth(ProfileSelf)} />
-                <Route path="users/:username" component={RequireAuth(ProfileShow)} />
-                <Route path="posts">
-                  <IndexRoute component={RequireAuth(PostsIndex)} />
-                  <Route path="new" component={RequireAuth(PostsNew)} />
-                  <Route path=":post_id" component={RequireAuth(PostsShow)} />
-                </Route>
-
-            </Route>
+        <Router>
+            <div>
+                <Header />
+                <Route path="/" component={PostsIndex} />
+                <Route path="/signin" component={Signin} />
+                <Route path="/signout" component={Signout} />
+                <Route path="/signup" component={Signup} />
+                <Route path="/profile" component={RequireAuth(ProfileSelf)} />
+                <Route path="/users/:username" component={RequireAuth(ProfileShow)} />
+                <Switch>
+                    <Route path="/posts" component={RequireAuth(PostsIndex)} />
+                    <Route path="/posts/new" component={RequireAuth(PostsNew)} />
+                    <Route path="/posts/:post_id" component={RequireAuth(PostsShow)} />
+                </Switch>
+                <Footer />
+            </div>
         </Router>
     </Provider>
 );

@@ -1,14 +1,15 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchPost, deletePost } from '../../actions/index';
 import { Link } from 'react-router';
 import { convertDate, convertTime } from '../../utils';
+import PropTypes from 'prop-types';
 
 import CommentsList from '../comments/comments_list';
 
 class PostsShow extends Component {
     static contextTypes = {
-        router: PropTypes.object
+        router: PropTypes.object.isRequired
     }
 
     componentWillMount() {

@@ -1,23 +1,20 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router';
+import { NavLink } from 'react-router-dom';
 
 class Header extends Component{
-    renderLinks() {
+    renderNavLinks() {
         if(this.props.authenticated) {
             return [
                 <li className="nav-item" key={2}>
-                    <Link className="nav-link" to="posts/new">New Post</Link>
-                </li>
+                    <NavLink to="posts/new" activeClassName="nav-active" className="nav-link">New Post</NavLink></li>
             ]
         } else {
             return [
                 <li className="nav-item" key={1}>
-                    <Link className="nav-link" to="/signin">Sign In</Link>
-                </li>,
+                    <NavLink to="/signin" activeClassName="nav-active" className="nav-link">Sign In</NavLink></li>,
                 <li className="nav-item" key={2}>
-                    <Link className="nav-link" to="/signup">Sign Up</Link>
-                </li>
+                    <NavLink to="/signup" activeClassName="nav-active" className="nav-link">Sign Up</NavLink></li>
             ];
         }
     }
@@ -25,17 +22,15 @@ class Header extends Component{
     render(){
         return(
             <nav className="navbar">
-                <Link to="/" className="navbar-brand">Discuss</Link>
+                <NavLink to="/" activeClassName="nav-active" className="navbar-brand">Discuss</NavLink>
                 <ul className="nav navbar-nav">
-                    {this.renderLinks()}
+                    {this.renderNavLinks()}
                 </ul>
                 <ul className="nav navbar-nav navbar-right">
                     <li className="nav-item">
-                        <Link className="nav-link" to="/profile">My Profile</Link>
-                    </li>
+                        <NavLink activeClassName="nav-active" className="nav-link" to="/profile">My Profile</NavLink></li>
                     <li className="nav-item">
-                        <Link className="nav-link" to="/signout">Sign Out</Link>
-                    </li>
+                        <NavLink activeClassName="nav-active" className="nav-link" to="/signout">Sign Out</NavLink></li>
                 </ul>
             </nav>
         )

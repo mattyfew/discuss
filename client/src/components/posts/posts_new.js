@@ -1,8 +1,9 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
 import { reduxForm } from 'redux-form';
 import { createPost } from '../../actions/index';
 import { Link } from 'react-router';
 import cookie from 'react-cookie';
+import PropTypes from 'prop-types';
 
 class PostsNew extends Component {
     static contextTypes = {

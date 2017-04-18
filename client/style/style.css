@@ -13,6 +13,7 @@ nav a { color: white; }
     text-decoration: none;
     background-color: inherit;
 }
+.nav-active { color: green; }
 
 .page-title { color: black; font-size: 36px; text-align: center; margin: 30px 0; }
 
