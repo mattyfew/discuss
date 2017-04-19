@@ -29,7 +29,7 @@ class CommentNew extends Component {
                 parentId: this.props.parentId
             }
         );
-        this.props.createComment(allProps)
+        this.props.createComment(allProps);
     }
 
     render(){

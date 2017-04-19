@@ -9,7 +9,7 @@ export default (state = INITIAL_STATE, action) => {
     case FETCH_COMMENTS:
         return { ...state, all: action.payload }
     case CREATE_COMMENT:
-        return { ...state, all: action.payload}
+        return { ...state, post: action.payload }
     case EDIT_COMMENT:
         return { ...state, comment: action.payload }
     case DELETE_COMMENT:

@@ -20,12 +20,10 @@ class PostsShow extends Component {
         this.props.fetchPost(this.props.params.post_id)
     }
 
-
     onDeleteClick() {
         this.props.deletePost(this.props.params.post_id)
         this.context.router.push('/')
     }
-
 
     render(){
         const { post } = this.props;
@@ -64,6 +62,7 @@ class PostsShow extends Component {
 }
 
 function mapStateToProps(state) {
+    console.log(state);
     return {
         post: state.posts.post
     };

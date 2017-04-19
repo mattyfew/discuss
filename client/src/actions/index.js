@@ -234,7 +234,7 @@ export function createComment(props) {
         .then(response => {
             console.log("createComment response", response.data);
             dispatch({
-                type: type.CREATE_COMMENT,
+                type: type.FETCH_POST,
                 payload: response.data
             })
         })

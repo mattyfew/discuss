@@ -97,15 +97,16 @@ module.exports = function(app) {
     // ******************   COMMENTS   **********************
 
     app.get('/post/:post_id/comments', function(req,res){
-        PostModel.findOne({ _id: req.params.post_id}).populate("comments").exec(function(err,result){
+        PostModel.findOne({ _id: req.params.post_id})
+        .populate("comments")
+        .exec(function(err,result){
             if (err) throw err;
             res.json(result)
         })
     });
 
     app.post('/post/:postId/comments/new', function(req,res){
-
-        let comment = new CommentModel({
+        const comment = new CommentModel({
             post_id: req.params.postId,
             content: req.body.props.inputValue,
             parent_id: req.body.props.parentId,
@@ -114,36 +115,18 @@ module.exports = function(app) {
                 username: req.body.props.username
             }
         });
-        // console.log("the new comment to BE", comment);
 
         comment.save(function(err, newComment){
-
-            // if(newComment.parent_id){
-            //     CommentModel.findByIdAndUpdate(newComment.parent_id, {
-            //         $push: { "children" : newComment._id }
-            //     }, { upsert: true, new: true })
-            //     .populate("children")
-            //     .exec(function(err, result){
-            //         if (err) console.error(err);
-            //         console.log(result, "this is in the commentModel");
-            //         res.json(result)
-            //     });
-            // } else {
-                console.log("THE NEW COMMENTTTT", newComment);
-
-
-                PostModel.findByIdAndUpdate(req.params.postId,{
-                    $push: { "comments": newComment._id }
-                }, { upsert: true, new: true })  // i took out safe:true
-                .populate("comments")
-                .populate("children")
-                .exec(function(err, result){
-                    if (err) console.error(err);
-                    console.log("this is in the PostModel", result);
-                    res.json(result)
-                });
-
-            // }
+            PostModel.findByIdAndUpdate(req.params.postId,{
+                $push: { "comments": newComment._id }
+            }, { upsert: true, new: true }) // i took out safe:true
+            .populate("comments")
+            .populate("children")
+            .exec(function(err, result){
+                if (err) console.error(err);
+                console.log("this is in the PostModel", result);
+                res.json(result)
+            });
         });
     });
 
