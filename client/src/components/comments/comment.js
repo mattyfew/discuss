@@ -14,6 +14,7 @@ class Comment extends Component {
 
     render() {
         const comment = this.props;
+        let showCommentForm = this.state.showCommentForm
 
         return(
             <div className="comment-container">
@@ -26,12 +27,12 @@ class Comment extends Component {
                     <footer className="comment-footer">
                         <button className="show-commentnew"
                             onClick={()=>{
-                                this.setState({ showCommentForm: true })
-                            } }>Reply</button>
+                                showCommentForm = !showCommentForm
+                                this.setState({showCommentForm: showCommentForm})                            } }>Reply</button>
                     </footer>
                 </article>
 
-                { this.state.showCommentForm &&
+                { showCommentForm &&
                     <div className="reply-comment-new">
                         <CommentNew
                             rows="2"
