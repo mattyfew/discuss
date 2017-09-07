@@ -16,6 +16,8 @@ class Comment extends Component {
         const comment = this.props;
         let showCommentForm = this.state.showCommentForm
 
+        console.log(comment);
+
         return(
             <div className="comment-container">
                 <article className="comment">
@@ -28,7 +30,8 @@ class Comment extends Component {
                         <button className="show-commentnew"
                             onClick={()=>{
                                 showCommentForm = !showCommentForm
-                                this.setState({showCommentForm: showCommentForm})                            } }>Reply</button>
+                                this.setState({showCommentForm})
+                            } }>Reply</button>
                     </footer>
                 </article>
 
@@ -36,7 +39,7 @@ class Comment extends Component {
                     <div className="reply-comment-new">
                         <CommentNew
                             rows="2"
-                            parentId={comment._id} />
+                            parentCommentId={comment._id} />
                     </div>
                 }
             </div>

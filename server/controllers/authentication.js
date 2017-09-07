@@ -19,16 +19,10 @@ exports.signin = function(req,res,next){
 }
 
 exports.signup = function(req,res,next) {
-    const email = req.body.email;
-    const password = req.body.password;
-    const username = req.body.username;
-    const firstname = req.body.firstname;
-    const lastname = req.body.lastname;
-    const imageUrl = req.body.imageUrl;
-
+    const { email, password, username, firstname, lastname, imageUrl} = req.body;
 
     if (!email || !password) {
-        return res.state(422).send({ error: 'You must provide email and password.' });
+        return res.status(422).send({ error: 'You must provide email and password.' });
     }
 
     User.findOne({ email: email}, function(err, existingUser) {
@@ -36,7 +30,7 @@ exports.signup = function(req,res,next) {
 
         // If a user with email does exist, return an error
         if (existingUser) {
-            return res.status(422).send({ error: 'Email is in use' });
+            return res.status(422).send({error:'Email is in use'});
         }
 
         const user = new User({

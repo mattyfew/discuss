@@ -26,7 +26,7 @@ class CommentNew extends Component {
     handleSubmit(){
         const allProps = Object.assign( {}, this.state, {
                 postId: this.props.postId,
-                parentId: this.props.parentId
+                parentId: this.props.parentId || null
             }
         );
         this.props.createComment(allProps);

@@ -70,26 +70,10 @@ function validate(formProps) {
             errors[key] = 'Please enter a ' + key
         }
     }
-    //
-    // if(!formProps.email){
-    //     errors.email = 'Please enter an email';
-    // }
-    //
-    // if(!formProps.username){
-    //     errors.username = 'Please enter a username';
-    // }
-    //
-    // if(!formProps.password){
-    //     errors.password = 'Please enter a password';
-    // }
-    //
-    // if(!formProps.passwordConfirm){
-    //     errors.passwordConfirm = 'Please enter a password confirmation';
-    // }
-    //
-    // if (formProps.password !== formProps.passwordConfirm){
-    //     errors.password = "Passwords must match!";
-    // }
+    
+    if (formProps.password !== formProps.passwordConfirm){
+        errors.password = "Passwords must match!";
+    }
 
     return errors;
 }

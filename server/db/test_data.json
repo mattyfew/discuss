@@ -1,28 +1,26 @@
-[
-    {
-        "title": "React Training - Startup that teaches React...oh and they build React Router too",
-        "link": "https://reacttraining.com/",
-        "content": "These guys built a router for react, and then they go around teaching about react for mad money. I think that's pretty sweet.",
-        "author": "Skrillex"
-    },
-    {
-        "title": "A minute of secondhand marijuana smoke may damage blood vessels",
-        "link": "http://sciencebulletin.org/archives/3762.html",
-        "content": "I suppose that this could be possible in humans.  But when I hear 'these temporary problems can turn into long-term problems if exposures occur often enough and may increase the chances of developing hardened and clogged arteries' I start to think that this might be more of a risk for overweight people, which we already knew.  Hard to say though when their only evidence is in rats.",
-        "author": "Skrillex"
-    },
-    {
-        "id": 2,
-        "title": "Amazon to become even more of a behemoth",
-        "content": "The Economist says investing in Amazon now is a good move because of how much they are projected to grow. The company is just insane.  Really interesting towards the end of the article, they talk about what happens if Amazon gets too big.  We’re talking about a future of commerce completed dominated by Amazon, even more than it already is.",
-        "author": "Ja Rule"
-    }
-];
-
-
-/* COMMENTS */
 {
-    "comments" : [
+    "posts": [
+        {
+            "title": "React Training - Startup that teaches React...oh and they build React Router too",
+            "link": "https://reacttraining.com/",
+            "content": "These guys built a router for react, and then they go around teaching about react for mad money. I think that's pretty sweet.",
+            "author": "Skrillex"
+        },
+        {
+            "title": "A minute of secondhand marijuana smoke may damage blood vessels",
+            "link": "http://sciencebulletin.org/archives/3762.html",
+            "content": "I suppose that this could be possible in humans.  But when I hear 'these temporary problems can turn into long-term problems if exposures occur often enough and may increase the chances of developing hardened and clogged arteries' I start to think that this might be more of a risk for overweight people, which we already knew.  Hard to say though when their only evidence is in rats.",
+            "author": "Skrillex"
+        },
+        {
+            "id": 2,
+            "title": "Amazon to become even more of a behemoth",
+            "content": "The Economist says investing in Amazon now is a good move because of how much they are projected to grow. The company is just insane.  Really interesting towards the end of the article, they talk about what happens if Amazon gets too big.  We’re talking about a future of commerce completed dominated by Amazon, even more than it already is.",
+            "author": "Ja Rule"
+        }
+    ],
+
+    "comments": [
         {   "post_id": "58d42d70c963be9e3b4729e5",
             "author_id": "58d67f57146f76d947d8ce28",
             "content": "first"
@@ -40,4 +38,4 @@
             "content": "i shouldnt be seeing this, if i am then its pulling all the comments"
         }
     ]
-}
+};

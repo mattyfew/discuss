@@ -25,12 +25,9 @@ const Root = ({store}) => (
                 <Route path="signup" component={Signup} />
                 <Route path="profile" component={RequireAuth(ProfileSelf)} />
                 <Route path="users/:username" component={RequireAuth(ProfileShow)} />
-                <Route path="posts">
-                  <IndexRoute component={RequireAuth(PostsIndex)} />
-                  <Route path=":post_id" component={RequireAuth(PostsShow)} />
-                  <Route path="new" component={RequireAuth(PostsNew)} />
-                </Route>
-
+                <Route path="posts" component={RequireAuth(PostsIndex)} />
+                <Route path="posts/new" component={RequireAuth(PostsNew)} />
+                <Route path="posts/:post_id" component={RequireAuth(PostsShow)} />
             </Route>
         </Router>
     </Provider>

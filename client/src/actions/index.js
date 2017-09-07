@@ -8,7 +8,6 @@ const ROOT_URL = 'http://localhost:3090';
 // ****************** AUTH *****************************
 
 export function signupUser(formProps, state) {
-    var self = this;
     return function(dispatch) {
         axios.post(`${ROOT_URL}/signup`, formProps)
             .then(response => {
@@ -29,15 +28,14 @@ export function signupUser(formProps, state) {
 
                 browserHistory.push('/');
             })
-            .catch(response => {
-                console.error(response);
-                dispatch(authError(response.data.error));
+            .catch(err => {
+                console.log(err.response.data.error);
+                dispatch(authError(err.response.data.error));
             })
     }
 }
 
 export function signinUser({ email, password }, state) {
-    var self = this;
     return function(dispatch) {
         axios.post(`${ROOT_URL}/signin`, { email, password })
             .then(response => {

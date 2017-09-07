@@ -21,7 +21,7 @@ app.use(session({
 
 mongoose.connect('mongodb://localhost:discuss/discuss')
 
-app.use(morgan('combined'));
+// app.use(morgan('combined'));
 app.use(cors())
 app.use(bodyParser.json({ type: '*/*'}));
 

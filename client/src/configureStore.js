@@ -1,8 +1,8 @@
 import { createStore, applyMiddleware, compose } from 'redux';
 import reduxThunk from 'redux-thunk';
-import logger from 'redux-logger';
 import reducers from './reducers';
 import { AUTH_USER } from './actions/types';
+// import logger from 'redux-logger';
 
 const configureStore = () => {
     const enhancers = compose(
