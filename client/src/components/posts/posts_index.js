@@ -10,12 +10,16 @@ class PostsIndex extends Component {
     }
 
     renderPosts() {
-        let postsCopy = this.props.posts
-        if (postsCopy !== []) {
-            postsCopy.sort(function(a,b){
-                return new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime()
-            })
+        if (!Array.isArray(this.props.posts)) {
+            console.log("not an array for some reason");
+            return
         }
+
+        let postsCopy = this.props.posts
+
+        postsCopy.sort(function(a,b){
+            return new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime()
+        })
 
         return [...postsCopy].reverse().map((post) => {
             return (
