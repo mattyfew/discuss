@@ -93,6 +93,7 @@ module.exports = function(app) {
         console.log(post);
         post.save(function(err, newPost){
             if (err) console.error(err);
+            res.status(201).json(newPost)
         });
     });
 

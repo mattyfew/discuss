@@ -17,6 +17,9 @@ class PostsNew extends Component {
     }
 
     handleSubmit(props) {
+        console.log("handleSubmit started, props: ", props);
+        console.log("and, state: ", this.state);
+
         let allProps = Object.assign(props, this.state)
         this.props.createPost(allProps)
         this.context.router.push('/')
