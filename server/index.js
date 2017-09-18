@@ -29,5 +29,26 @@ router(app);
 
 const port = process.env.PORT || 3090;
 const server = http.createServer(app);
-server.listen(port);
-console.log('server listening on ' + port);
+const io = require('socket.io').listen(server);
+server.listen(port)
+
+// var server = app.listen(port, () => console.log('server listening on ' + port));
+
+
+
+io.on('connection', function(socket) {
+    console.log("SOMETHING HAPPENED!!!!");
+    console.log(`socket with the id ${socket.id} is now connected`);
+
+    socket.on('disconnect', function() {
+        console.log(`socket with the id ${socket.id} is now disconnected`);
+    });
+
+    socket.on('thanks', function(data) {
+        console.log(data);
+    });
+
+    socket.emit('welcome', {
+        message: 'Welome. It is nice to see you'
+    });
+});
