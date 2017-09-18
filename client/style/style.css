@@ -71,4 +71,6 @@ button.show-commentnew { color: black; font-size: 11px; background-color: lightg
 
 
 
-/**/
+/* WELCOME */
+
+#welcome-container { text-align: center; }

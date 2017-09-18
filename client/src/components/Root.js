@@ -7,6 +7,7 @@ import Signin from './auth/signin';
 import Signout from './auth/signout';
 import Signup from './auth/signup';
 import RequireAuth from './auth/require_auth';
+import Welcome from './welcome';
 
 import PostsIndex from './posts/posts_index';
 import PostsNew from './posts/posts_new';
@@ -19,7 +20,8 @@ const Root = ({store}) => (
     <Provider store={store}>
         <Router history={browserHistory}>
             <Route path="/" component={App}>
-                <IndexRoute component={PostsIndex} />
+                <IndexRoute component={RequireAuth(PostsIndex)} />
+                <Route path="welcome" component={Welcome} />
                 <Route path="signin" component={Signin} />
                 <Route path="signout" component={Signout} />
                 <Route path="signup" component={Signup} />

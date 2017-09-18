@@ -15,9 +15,7 @@ class Comment extends Component {
     render() {
         const comment = this.props;
         let showCommentForm = this.state.showCommentForm
-
-        console.log(comment);
-
+        
         return(
             <div className="comment-container">
                 <article className="comment">

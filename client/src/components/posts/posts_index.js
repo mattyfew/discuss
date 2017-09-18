@@ -14,7 +14,6 @@ class PostsIndex extends Component {
         postsCopy.sort(function(a,b){
             return new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime()
         })
-        console.log(postsCopy);
 
         return [...postsCopy].reverse().map((post) => {
             return (
@@ -22,7 +21,7 @@ class PostsIndex extends Component {
 
                         <h3 className="posts-post-title"><Link to={"/posts/" + post._id}>{post.title}</Link></h3>
                         <div className="row posts-post-bottom-row">
-                            
+
                             <div className="col-sm-4 posts-post-author">
                                 by: <span className=""><Link to={"/users/" + post.author.username}>{post.author.username}</Link></span>
                             </div>
@@ -51,7 +50,7 @@ class PostsIndex extends Component {
 }
 
 function mapStateToProps(state) {
-    return { posts: state.posts.all}
+    return { posts: state.posts.all }
 }
 
 export default connect(mapStateToProps, { fetchPosts })(PostsIndex);
