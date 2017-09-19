@@ -19,7 +19,8 @@ export default (state = {}, action) => {
     case type.FETCH_USER:
         return { ...state, user: action.payload }
     case type.EDIT_PROFILE:
-        console.log("in reducer", action.payload);
+        console.log("EDIT_PROFILE in reducer - payload", action.payload);
+        console.log("EDIT_PROFILE in reducer - state", state);
         return { ...state, user: action.payload }
     }
 

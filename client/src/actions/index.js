@@ -173,7 +173,7 @@ export function editProfile(props) {
             props
         })
         .then(response => {
-            console.log('AIN DA RES');
+            console.log('editProfile action response', response);
 
             dispatch({
                 type: type.EDIT_PROFILE,

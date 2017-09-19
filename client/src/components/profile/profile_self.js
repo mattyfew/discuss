@@ -7,6 +7,11 @@ import cookie from 'react-cookie';
 
 
 class ProfileSelf extends Component {
+    constructor(props) {
+        super(props)
+        this.resetFields = this.resetFields.bind(this)
+    }
+
     componentWillMount() {
         this.state = {
             userId: cookie.load('user_id'),
@@ -17,12 +22,26 @@ class ProfileSelf extends Component {
     }
 
     handleSubmit(props) {
+        console.log("ProfileSelf handleSubmit running", props)
         let allProps = Object.assign(props, this.state)
         this.props.editProfile(allProps)
+        this.props.resetForm()
+
+    }
+
+    resetFields() {
+        console.log("fields", this.props.fields);
+        if (this.props.fields){
+            for (var key in this.props.fields) {
+                this.props.fields[key].value = ''
+            }
+        }
     }
 
     render(){
-        const { fields: {firstname, lastname, imageUrl, email }, handleSubmit, user } = this.props
+        const { fields: {
+            firstname, lastname, imageUrl, email
+        }, handleSubmit, user } = this.props
 
 
         if (!user) return (<div>Loading...</div>)
