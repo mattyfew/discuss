@@ -204,6 +204,31 @@ export function fetchUser(username) {
     }
 }
 
+export function uploadMulterImgToS3(formData) {
+    return function(dispatch) {
+        const config = {
+            headers: {
+                'Content-Type': false,
+                'Process-Data': false
+            }
+        };
+
+        axios.post(`${ROOT_URL}/uploadMulterImg`, formData)
+            .then((response) => {
+                console.log("it worked????", response);
+
+                dispatch({
+                    type: type.UPLOAD_MULTER_TO_S3,
+                    payload: response.data
+                })
+
+            })
+            .catch((err) => {
+                console.log("there was an error in React with /uploadMulterImg", err);
+            })
+    }
+}
+
 // ******************* COMMENTS **************************
 
 export function fetchComments(postId) {

@@ -1,12 +1,20 @@
 # Discuss
 
-Discuss is a web forum for learning about and discussing new business ideas.
+Discuss is a private web forum for learning about and discussing new business ideas.
+
+## Author
+
+[Matt Fewer](http://mattfewer.com) ([website](http://mattfewer.com), [github](https://github.com/mattyfew))
+
+## Technologies
+
+This application was built with React, Redux, MongoDB, Node.js, & Express.
 
 ## Getting Started
 
 ### Prerequisites
 
-You must have an instance of MongoDB configured for your environment. You must also have Node.js installed.
+You must have an instance of MongoDB configured for your environment. For more information on this, please visit the [MongoDB installation manual](https://docs.mongodb.com/manual/installation/#mongodb-community-edition).  You must also have Node.js installed.
 
 ### Installing
 
@@ -18,33 +26,10 @@ Install all dependencies:
 
 You must run Babel, mongod, and the node server concurrently.
 
-```
-// root/server
+1. Inside of `/root/server`, run: `node index.js`
+2. Inside of `/root/client`, run: `npm start`
+3. Make sure to have an instance of MongoDB running: `mongod`
 
-node index.js
+## Screenshots
 
-// root/client
-
-npm start
-
-// root/
-
-mongod
-
-```
-
-## Built With
-
--  [JavaScript](https://www.javascript.com/)
-- [Node.js](nodejs.org)
-- [Express](https://expressjs.com/)
-- [React](https://facebook.github.io/react/)
-- [Redux](http://redux.js.org/)
-- [MongoDB](https://www.mongodb.com/)
-
-## Author
-
-[Matthew Fewer](http://mattfewer.com) aka [mattyfew](https://github.com/mattyfew)
-
-
-
+Coming soon...

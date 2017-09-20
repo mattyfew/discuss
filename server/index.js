@@ -8,6 +8,8 @@ const cors = require('cors');
 const session = require('express-session');
 const Store = require('connect-redis')(session);
 
+
+
 app.use(session({
     store: new Store({
         ttl: 3600,
@@ -23,7 +25,13 @@ mongoose.connect('mongodb://localhost:discuss/discuss')
 
 // app.use(morgan('combined'));
 app.use(cors())
-app.use(bodyParser.json({ type: '*/*'}));
+// app.use(bodyParser.json({ type: '*/*'}));
+app.use(bodyParser.json());
+
+
+
+
+
 
 router(app);
 

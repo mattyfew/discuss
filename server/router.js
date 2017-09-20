@@ -1,6 +1,11 @@
 const Authentication = require('./controllers/authentication');
 const passportService = require('./services/passport');
 const passport = require('passport');
+const fs = require('fs');
+const knox = require('knox');
+const multer = require('multer');
+const uidSafe = require('uid-safe');
+const path = require('path');
 
 // passport, by default, tries to make a cookie-based session. So we tell it that should be false, since we are using JWT
 const requireAuth = passport.authenticate('jwt', { session: false });
@@ -10,6 +15,45 @@ const PostModel = require('./models/post');
 const UserModel = require('./models/user');
 const CommentModel = require('./models/comment');
 const ObjectId = require('mongoose').Types.ObjectId;
+
+
+
+
+/********** Knox ****************/
+
+let secrets;
+if (process.env.NODE_ENV == 'production') {
+    secrets = process.env
+} else {
+    secrets = require('./secrets')
+}
+
+const client = knox.createClient({
+    key: secrets.AWS_KEY,
+    secret: secrets.AWS_SECRET,
+    bucket: 'discuss-images'
+});
+
+/********** Multer File Upload **************/
+
+var diskStorage = multer.diskStorage({
+
+    destination: function (req, file, callback) {
+        console.log("diskstorage doin work", file);
+        callback(null, __dirname + '/uploads');
+    },
+    filename: function (req, file, callback) {
+        uidSafe(24).then(function(uid) {
+            console.log("the new uid", uid, uid + path.extname(file.originalname));
+            callback(null, uid + path.extname(file.originalname));
+        });
+    }
+});
+
+var uploader = multer({
+    storage: diskStorage,
+    limits: { filesize: 2097152 }
+});
 
 
 
@@ -50,12 +94,61 @@ module.exports = function(app) {
     });
 
     app.post('/profile/edit', function(req,res){
+        console.log("profile edit running");
         UserModel.findOneAndUpdate({_id: req.body.props.userId}, req.body.props, {upsert: false, new: true}, function(err, user){
             if (err) console.log(err);
-            console.log("callback",user);
             return res.send(user)
         })
     })
+
+    app.post('/uploadMulterImg', uploader.single('file'), function(req,res,next){
+        console.log("POST /uploadMulterImg summin happened");
+
+        console.log('in send to AWS function');
+        const s3Request = client.put(req.file.filename, {
+            'Content-Type': req.file.mimetype,
+            'Content-Length': req.file.size,
+            'x-amz-acl': 'public-read'
+        });
+
+        const readStream = fs.createReadStream(req.file.path);
+        readStream.pipe(s3Request);
+
+        s3Request.on('response', s3Response => {
+
+            const wasSuccessful = s3Response.statusCode == 200;
+            console.log('wasSuccessful', wasSuccessful);
+            if(wasSuccessful) {
+                next();
+            } else {
+                res.json({ success: false });
+            }
+        });
+    })
+
+    // function sendToAWS(req, res, next) {
+    //     console.log('in send to AWS function');
+    //     const s3Request = client.put(req.file.filename, {
+    //         'Content-Type': req.file.mimetype,
+    //         'Content-Length': req.file.size,
+    //         'x-amz-acl': 'public-read'
+    //     });
+    //
+    //     const readStream = fs.createReadStream(req.file.path);
+    //     readStream.pipe(s3Request);
+    //
+    //     s3Request.on('response', s3Response => {
+    //
+    //         const wasSuccessful = s3Response.statusCode == 200;
+    //         console.log('wasSuccessful', wasSuccessful);
+    //         if(wasSuccessful) {
+    //             next();
+    //         } else {
+    //             res.json({ success: false });
+    //         }
+    //     });
+    //
+    // }
 
 
 
